@@ -17,30 +17,17 @@ class FlowerClient(private val context: Context) {
 // TODO: 27.12.21 rewrite completely
 
     companion object {
-        private val LOWER_BYTE_MASK = 0xFF
-        private var local_epochs = 1
-        private val TAG = "Flower"
+        private const val LOWER_BYTE_MASK = 0xFF
+        private const val TAG = "Flower"
 
     }
 
-    private var tlModel: TransferLearningModelWrapper
+    private var tlModel: TransferLearningModelWrapper = TransferLearningModelWrapper(context)
     private val lastLoss = MutableLiveData<Float>()
-
-    //    private var context: Context? = null
     private val isTraining = ConditionVariable()
+    private var local_epochs = 1
 
-    init {
-        tlModel = TransferLearningModelWrapper(context)
-//        this.context = context
-    }
-
-//    fun FlowerClient(context: Context?) {
-//        tlModel = TransferLearningModelWrapper(context)
-//        this.context = context
-//    }
-
-
-    fun fit(weights: Array<ByteBuffer?>?, epochs: Int): Pair<Array<ByteBuffer?>?, Int?>? {
+    fun fit(weights: Array<ByteBuffer?>?, epochs: Int): Pair<Array<ByteBuffer>?, Int?>? {
         local_epochs = epochs
         tlModel.updateParameters(weights)
         isTraining.close()
@@ -48,13 +35,13 @@ class FlowerClient(private val context: Context) {
         tlModel.enableTraining { epoch, loss -> setLastLoss(epoch, loss) }
         Log.e(TAG, "Training enabled. Local Epochs = " + local_epochs)
         isTraining.block()
-        return Pair.create(getWeights(), tlModel.getSize_Training())
+        return Pair.create(getWeights(), tlModel.size_Training)
     }
 
-    fun evaluate(weights: Array<ByteBuffer?>?): Pair<Pair<Float?, Float?>?, Int?>? {
+    fun evaluate(weights: Array<ByteBuffer?>?): Pair<Pair<Float, Float>, Int> {
         tlModel.updateParameters(weights)
         tlModel.disableTraining()
-        return Pair.create(tlModel.calculateTestStatistics(), tlModel.getSize_Testing())
+        return Pair.create(tlModel.calculateTestStatistics(), tlModel.size_Testing)
     }
 
     private fun setLastLoss(epoch: Int, newLoss: Float) {
@@ -115,7 +102,7 @@ class FlowerClient(private val context: Context) {
         }
     }
 
-    private fun getWeights(): Array<ByteBuffer?>? {
+    private fun getWeights(): Array<ByteBuffer> {
         return tlModel.parameters
     }
 

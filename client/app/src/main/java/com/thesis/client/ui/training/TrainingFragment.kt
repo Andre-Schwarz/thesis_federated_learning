@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.thesis.client.data.FlowerClient
 import com.thesis.client.databinding.FragmentHomeBinding
 
 class TrainingFragment : Fragment() {
@@ -26,8 +27,18 @@ class TrainingFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        homeViewModel =
-            ViewModelProvider(this).get(TrainingViewModel::class.java)
+//        homeViewModel =
+//            ViewModelProvider(this).get(TrainingViewModel::class.java)
+
+        val flowerClient = FlowerClient(this.requireContext())
+
+        homeViewModel = ViewModelProvider(
+            this,
+            TrainingViewModelFactory(this.requireContext(), flowerClient)
+        ).get(
+            TrainingViewModel::class.java
+        )
+
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding!!.root
@@ -98,5 +109,5 @@ class TrainingFragment : Fragment() {
         }
     }
 
-    // endegion
+    // endregion
 }

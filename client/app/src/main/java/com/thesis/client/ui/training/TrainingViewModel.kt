@@ -1,16 +1,26 @@
 package com.thesis.client.ui.training
 
+import android.content.Context
+import android.os.Handler
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.thesis.client.R
+import com.thesis.client.data.FlowerClient
 
-class TrainingViewModel : ViewModel() {
+class TrainingViewModel(mApplication: Context, private val flowerClient: FlowerClient) : ViewModel() {
 
     companion object {
         const val CROSS_DRAWABLE_ID = R.drawable.cross
         const val CHECKMARK_DRAWABLE_ID = R.drawable.checkmark
     }
+
+//    var fc: FlowerClient
+
+    init {
+//        fc = FlowerClient()
+    }
+
 
     // region Button Texts
 
@@ -53,15 +63,19 @@ class TrainingViewModel : ViewModel() {
     // region button commands
 
     fun handleLoadDataButton(clientID: Int?) {
-        _loadDataImageDrawable.value = CHECKMARK_DRAWABLE_ID
 
         clientID?.let {
-            if(clientID > 10 || clientID < 1){
+            if (clientID > 10 || clientID < 1) {
 
             }
-
+            val handler = Handler()
+            handler.postDelayed({
+                flowerClient.loadData(clientID)
+                _loadDataImageDrawable.value = CHECKMARK_DRAWABLE_ID
+//                setResultText("Training dataset is loaded in memory.")
+//                connectButton.setEnabled(true)
+            }, 1000)
         }
-
 
 
 //        if (TextUtils.isEmpty(clientID)) {
