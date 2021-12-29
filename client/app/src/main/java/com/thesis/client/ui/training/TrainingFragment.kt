@@ -1,4 +1,4 @@
-package com.thesis.client.ui.home
+package com.thesis.client.ui.training
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,11 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.thesis.client.databinding.FragmentHomeBinding
 
-class HomeFragment : Fragment() {
+class TrainingFragment : Fragment() {
 
     // region Fields
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var homeViewModel: TrainingViewModel
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding
 
@@ -27,7 +27,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+            ViewModelProvider(this).get(TrainingViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding!!.root
@@ -87,7 +87,7 @@ class HomeFragment : Fragment() {
             }
 
             binding.buttonLoadData.setOnClickListener {
-                homeViewModel.handleLoadDataButton()
+                homeViewModel.handleLoadDataButton(1)
             }
             binding.buttonEstablishConnection.setOnClickListener {
                 homeViewModel.handleEstablishConnectionButton()

@@ -1,11 +1,11 @@
-package com.thesis.client.ui.home
+package com.thesis.client.ui.training
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.thesis.client.R
 
-class HomeViewModel : ViewModel() {
+class TrainingViewModel : ViewModel() {
 
     companion object {
         const val CROSS_DRAWABLE_ID = R.drawable.cross
@@ -52,8 +52,44 @@ class HomeViewModel : ViewModel() {
 
     // region button commands
 
-    fun handleLoadDataButton() {
+    fun handleLoadDataButton(clientID: Int?) {
         _loadDataImageDrawable.value = CHECKMARK_DRAWABLE_ID
+
+        clientID?.let {
+            if(clientID > 10 || clientID < 1){
+
+            }
+
+        }
+
+
+
+//        if (TextUtils.isEmpty(clientID)) {
+//            Toast.makeText(
+//                this,
+//                "Please enter a client partition ID between 1 and 10 (inclusive)",
+//                Toast.LENGTH_LONG
+//            ).show()
+//        } else if (device_id.getText().toString().toInt() > 10 || device_id.getText().toString()
+//                .toInt() < 1
+//        ) {
+//            Toast.makeText(
+//                this,
+//                "Please enter a client partition ID between 1 and 10 (inclusive)",
+//                Toast.LENGTH_LONG
+//            ).show()
+//        } else {
+//            MainActivity.hideKeyboard(this)
+//            setResultText("Loading the local training dataset in memory. It will take several seconds.")
+//            loadDataButton.setEnabled(false)
+//            val handler = Handler()
+//            handler.postDelayed({
+//                fc.loadData(device_id.getText().toString().toInt())
+//                setResultText("Training dataset is loaded in memory.")
+//                connectButton.setEnabled(true)
+//            }, 1000)
+//        }
+
     }
 
     fun handleEstablishConnectionButton() {
