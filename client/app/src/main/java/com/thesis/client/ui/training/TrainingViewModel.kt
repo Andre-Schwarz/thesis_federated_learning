@@ -2,13 +2,17 @@ package com.thesis.client.ui.training
 
 import android.content.Context
 import android.os.Handler
+import android.text.TextUtils
+import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.thesis.client.R
 import com.thesis.client.data.FlowerClient
+import io.grpc.ManagedChannel
+import io.grpc.ManagedChannelBuilder
 
-class TrainingViewModel(mApplication: Context, private val flowerClient: FlowerClient) : ViewModel() {
+class TrainingViewModel(context: Context, private val flowerClient: FlowerClient) : ViewModel() {
 
     companion object {
         const val CROSS_DRAWABLE_ID = R.drawable.cross
@@ -20,6 +24,8 @@ class TrainingViewModel(mApplication: Context, private val flowerClient: FlowerC
     init {
 //        fc = FlowerClient()
     }
+
+    private var channel: ManagedChannel? = null
 
 
     // region Button Texts
@@ -106,8 +112,30 @@ class TrainingViewModel(mApplication: Context, private val flowerClient: FlowerC
 
     }
 
-    fun handleEstablishConnectionButton() {
+    fun handleEstablishConnectionButton(ip: String, port: Int) {
         _establishConnectionImageDrawable.value = CHECKMARK_DRAWABLE_ID
+
+//        val host: String = ip.getText().toString()
+//        val portStr: String =  port.getText().toString()
+        if (TextUtils.isEmpty(ip) || port != null || !Patterns.IP_ADDRESS.matcher(
+                ip
+            ).matches()
+        ) {
+//            Toast.makeText(
+//                this,
+//                "Please enter the correct IP and port of the FL server",
+//                Toast.LENGTH_LONG
+//            ).show()
+        } else {
+            channel =
+                ManagedChannelBuilder.forAddress(ip, port).maxInboundMessageSize(10 * 1024 * 1024)
+                    .usePlaintext().build()
+//            MainActivity.hideKeyboard(this)
+//            trainButton.setEnabled(true)
+//            connectButton.setEnabled(false)
+//            setResultText("Channel object created. Ready to train!")
+        }
+
     }
 
     fun handleStartTrainingButton() {

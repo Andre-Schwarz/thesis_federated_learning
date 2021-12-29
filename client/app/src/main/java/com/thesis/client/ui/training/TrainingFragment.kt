@@ -27,9 +27,6 @@ class TrainingFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-//        homeViewModel =
-//            ViewModelProvider(this).get(TrainingViewModel::class.java)
-
         val flowerClient = FlowerClient(this.requireContext())
 
         homeViewModel = ViewModelProvider(
@@ -38,7 +35,6 @@ class TrainingFragment : Fragment() {
         ).get(
             TrainingViewModel::class.java
         )
-
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding!!.root
@@ -56,6 +52,7 @@ class TrainingFragment : Fragment() {
     // endregion
 
     // region Private Methods
+
     private fun bindViewData() {
         binding?.let { binding ->
             homeViewModel.loadDataButtonText.observe(viewLifecycleOwner, {
@@ -101,7 +98,7 @@ class TrainingFragment : Fragment() {
                 homeViewModel.handleLoadDataButton(1)
             }
             binding.buttonEstablishConnection.setOnClickListener {
-                homeViewModel.handleEstablishConnectionButton()
+                homeViewModel.handleEstablishConnectionButton("192.168.188.47", 8999)
             }
             binding.buttonStartTraining.setOnClickListener {
                 homeViewModel.handleStartTrainingButton()
