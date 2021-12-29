@@ -60,9 +60,15 @@ class FlowerClient(private val context: Context) {
                     context.assets.open("data/partition_" + (device_id - 1) + "_train.txt")
                 )
             )
-            var line: String
+            var line: String = ""
             var i = 0
-            while (reader.readLine().also { line = it } != null) {
+            while (
+                reader.readLine().also {
+                    if (it != null) {
+                        line = it
+                    }
+                } != null
+            ) {
                 i++
                 Log.e(TAG, i.toString() + "th training image loaded")
                 addSample("data/$line", true)
@@ -71,7 +77,11 @@ class FlowerClient(private val context: Context) {
             i = 0
             reader =
                 BufferedReader(InputStreamReader(context.assets.open("data/partition_" + (device_id - 1) + "_test.txt")))
-            while (reader.readLine().also { line = it } != null) {
+            while (reader.readLine().also {
+                    if (it != null) {
+                        line = it
+                    }
+                } != null) {
                 i++
                 Log.e(TAG, i.toString() + "th test image loaded")
                 addSample("data/$line", false)
