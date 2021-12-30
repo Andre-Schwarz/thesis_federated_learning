@@ -3,12 +3,15 @@ package com.thesis.client.ui.training
 import android.content.Context
 import android.os.Handler
 import android.text.TextUtils
+import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.thesis.client.R
 import com.thesis.client.data.FlowerClient
+import com.thesis.client.data.FlowerServiceRunnable
+import com.thesis.client.data.GrpcTask
 import io.grpc.ManagedChannel
 import io.grpc.ManagedChannelBuilder
 
@@ -113,14 +116,13 @@ class TrainingViewModel(context: Context, private val flowerClient: FlowerClient
     }
 
     fun handleEstablishConnectionButton(ip: String, port: Int) {
-        _establishConnectionImageDrawable.value = CHECKMARK_DRAWABLE_ID
+
 
 //        val host: String = ip.getText().toString()
 //        val portStr: String =  port.getText().toString()
-        if (TextUtils.isEmpty(ip) || port != null || !Patterns.IP_ADDRESS.matcher(
-                ip
-            ).matches()
+        if (TextUtils.isEmpty(ip) || !Patterns.IP_ADDRESS.matcher(ip).matches()
         ) {
+            Log.e("TAG", "handleEstablishConnectionButton: IP IS WRONG")
 //            Toast.makeText(
 //                this,
 //                "Please enter the correct IP and port of the FL server",
@@ -130,6 +132,14 @@ class TrainingViewModel(context: Context, private val flowerClient: FlowerClient
             channel =
                 ManagedChannelBuilder.forAddress(ip, port).maxInboundMessageSize(10 * 1024 * 1024)
                     .usePlaintext().build()
+
+            if (channel != null) {
+                Log.e("TAG", "handleEstablishConnectionButton: CHANNEL CREATED")
+                _establishConnectionImageDrawable.value = CHECKMARK_DRAWABLE_ID
+            } else {
+                Log.e("TAG", "handleEstablishConnectionButton: CHANNEL NOT CREATED")
+            }
+
 //            MainActivity.hideKeyboard(this)
 //            trainButton.setEnabled(true)
 //            connectButton.setEnabled(false)
@@ -139,8 +149,16 @@ class TrainingViewModel(context: Context, private val flowerClient: FlowerClient
     }
 
     fun handleStartTrainingButton() {
-        _startTrainingImageDrawable.value = CHECKMARK_DRAWABLE_ID
+
+        channel?.let { channel ->
+            val grpcTask = GrpcTask(flowerClient, FlowerServiceRunnable(), channel)
+            grpcTask.execute()
+
+            _startTrainingImageDrawable.value = CHECKMARK_DRAWABLE_ID
+        }
     }
 
     // endregion
+
+
 }

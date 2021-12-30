@@ -25,15 +25,15 @@ class FlowerClient(private val context: Context) {
     private var tlModel: TransferLearningModelWrapper = TransferLearningModelWrapper(context)
     private val lastLoss = MutableLiveData<Float>()
     private val isTraining = ConditionVariable()
-    private var local_epochs = 1
+    private var localEpochs = 1
 
-    fun fit(weights: Array<ByteBuffer?>?, epochs: Int): Pair<Array<ByteBuffer>?, Int?>? {
-        local_epochs = epochs
+    fun fit(weights: Array<ByteBuffer?>?, epochs: Int): Pair<Array<ByteBuffer>, Int> {
+        localEpochs = epochs
         tlModel.updateParameters(weights)
         isTraining.close()
-        tlModel.train(local_epochs)
+        tlModel.train(localEpochs)
         tlModel.enableTraining { epoch, loss -> setLastLoss(epoch, loss) }
-        Log.e(TAG, "Training enabled. Local Epochs = " + local_epochs)
+        Log.e(TAG, "Training enabled. Local Epochs = $localEpochs")
         isTraining.block()
         return Pair.create(getWeights(), tlModel.size_Training)
     }
@@ -45,7 +45,7 @@ class FlowerClient(private val context: Context) {
     }
 
     private fun setLastLoss(epoch: Int, newLoss: Float) {
-        if (epoch == local_epochs - 1) {
+        if (epoch == localEpochs - 1) {
             Log.e(TAG, "Training finished after epoch = $epoch")
             lastLoss.postValue(newLoss)
             tlModel.disableTraining()
@@ -112,7 +112,7 @@ class FlowerClient(private val context: Context) {
         }
     }
 
-    private fun getWeights(): Array<ByteBuffer> {
+    fun getWeights(): Array<ByteBuffer> {
         return tlModel.parameters
     }
 
