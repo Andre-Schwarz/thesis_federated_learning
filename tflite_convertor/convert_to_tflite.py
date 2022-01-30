@@ -38,7 +38,7 @@ head = tf.keras.Sequential(
     ]
 )
 
-head.compile(loss="categorical_crossentropy", optimizer="sgd")
+head.compile(loss="categorical_crossentropy", optimizer="adam")
 
 
 """Convert the model for TFLite.
