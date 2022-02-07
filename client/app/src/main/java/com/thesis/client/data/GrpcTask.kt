@@ -8,16 +8,11 @@ import java.io.StringWriter
 
 class GrpcTask(
     private val flowerClient: FlowerClient,
+    private val setResultText: (String) -> Unit,
     private val grpcRunnable: GRPCRunnable,
     private val channel: ManagedChannel,
-//    activity: MainActivity
 ) :
     AsyncTask<Void?, Void?, String>() {
-    //    private val activityReference: MainActivity
-
-    init {
-        //        activityReference = activity
-    }
 
     override fun doInBackground(vararg params: Void?): String {
         return try {
@@ -37,8 +32,7 @@ class GrpcTask(
     }
 
     override fun onPostExecute(result: String) {
-//        val activity: MainActivity = activityReference ?: return
-//        activity.setResultText(result)
+        setResultText(result)
 //        activity.trainButton.setEnabled(false)
     }
 }

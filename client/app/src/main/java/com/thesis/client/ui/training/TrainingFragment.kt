@@ -1,21 +1,26 @@
 package com.thesis.client.ui.training
 
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import com.thesis.client.GlobalViewModel
 import com.thesis.client.data.FlowerClient
-import com.thesis.client.databinding.FragmentHomeBinding
+import com.thesis.client.databinding.FragmentTrainingBinding
+import java.util.*
 
 class TrainingFragment : Fragment() {
 
     // region Fields
 
-    private lateinit var homeViewModel: TrainingViewModel
-    private var _binding: FragmentHomeBinding? = null
+    private val globalViewModel: GlobalViewModel by activityViewModels()
+    private lateinit var trainingViewModel: TrainingViewModel
+    private var _binding: FragmentTrainingBinding? = null
     private val binding get() = _binding
 
     // endregion
@@ -29,14 +34,14 @@ class TrainingFragment : Fragment() {
     ): View {
         val flowerClient = FlowerClient(this.requireContext())
 
-        homeViewModel = ViewModelProvider(
+        trainingViewModel = ViewModelProvider(
             this,
-            TrainingViewModelFactory(this.requireContext(), flowerClient)
+            TrainingViewModelFactory(this.requireContext(), flowerClient, setResultText)
         ).get(
             TrainingViewModel::class.java
         )
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentTrainingBinding.inflate(inflater, container, false)
         val root: View = binding!!.root
 
         bindViewData()
@@ -55,55 +60,80 @@ class TrainingFragment : Fragment() {
 
     private fun bindViewData() {
         binding?.let { binding ->
-            homeViewModel.loadDataButtonText.observe(viewLifecycleOwner, {
+            trainingViewModel.loadDataButtonText.observe(viewLifecycleOwner) {
                 binding.buttonLoadData.text = it
-            })
-            homeViewModel.establishConnectionButtonText.observe(viewLifecycleOwner, {
+            }
+            trainingViewModel.establishConnectionButtonText.observe(viewLifecycleOwner) {
                 binding.buttonEstablishConnection.text = it
-            })
-            homeViewModel.startTrainingButtonText.observe(viewLifecycleOwner, {
+            }
+            trainingViewModel.startTrainingButtonText.observe(viewLifecycleOwner) {
                 binding.buttonStartTraining.text = it
-            })
+            }
 
             context?.let { context ->
-                homeViewModel.loadDataImageDrawable.observe(viewLifecycleOwner, {
+                trainingViewModel.loadDataImageDrawable.observe(viewLifecycleOwner) {
                     binding.imageLoadData.setImageDrawable(
                         ContextCompat.getDrawable(
                             context,
                             it
                         )
                     )
-                })
+                }
 
-                homeViewModel.establishConnectionImageDrawable.observe(viewLifecycleOwner, {
+                trainingViewModel.establishConnectionImageDrawable.observe(viewLifecycleOwner) {
                     binding.imageEstablishConnection.setImageDrawable(
                         ContextCompat.getDrawable(
                             context,
                             it
                         )
                     )
-                })
+                }
 
-                homeViewModel.startTrainingImageDrawable.observe(viewLifecycleOwner, {
+                trainingViewModel.startTrainingImageDrawable.observe(viewLifecycleOwner) {
                     binding.imageStartTraining.setImageDrawable(
                         ContextCompat.getDrawable(
                             context,
                             it
                         )
                     )
-                })
+                }
             }
 
             binding.buttonLoadData.setOnClickListener {
-                homeViewModel.handleLoadDataButton(1)
+                val clientId = Integer.valueOf(binding.editClientId.text.toString())
+                trainingViewModel.handleLoadDataButton(clientId)
             }
             binding.buttonEstablishConnection.setOnClickListener {
-                homeViewModel.handleEstablishConnectionButton("192.168.188.47", 8999)
+                val ip = binding.editServerIp.text.toString()
+                val port = Integer.valueOf(binding.editServerPort.text.toString())
+
+                setResultText("Establish Connection to$ip $port")
+
+                trainingViewModel.handleEstablishConnectionButton(ip, port)
             }
             binding.buttonStartTraining.setOnClickListener {
-                homeViewModel.handleStartTrainingButton()
+                trainingViewModel.handleStartTrainingButton()
+            }
+
+            trainingViewModel.loadDataButtonEnabled.observe(viewLifecycleOwner) {
+                binding.buttonLoadData.isEnabled = it
+            }
+            trainingViewModel.establishConnectionButtonEnabled.observe(viewLifecycleOwner) {
+                binding.buttonEstablishConnection.isEnabled = it
+            }
+            trainingViewModel.startTrainingButtonEnabled.observe(viewLifecycleOwner) {
+                binding.buttonStartTraining.isEnabled = it
             }
         }
+    }
+
+    val setResultText: (String) -> Unit = { text: String ->
+        val dateFormat = SimpleDateFormat("HH:mm:ss")
+        val time = dateFormat.format(Date())
+
+        binding?.grpcResponseText?.append("\n$time   $text")
+        globalViewModel.addTextToLogging("\n$time   $text")
+
     }
 
     // endregion

@@ -118,7 +118,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#FAF2F2"
-        android:gravity="bottom"
         android:nestedScrollingEnabled="true"
         android:overScrollMode="always"
         android:scrollbarAlwaysDrawHorizontalTrack="false"
@@ -127,10 +126,9 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="12sp"
         android:verticalScrollbarPosition="defaultPosition"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_start_training"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,10 +7,9 @@ import flwr.android_client.*
 import flwr.android_client.ClientMessage.*
 import io.grpc.stub.StreamObserver
 import java.nio.ByteBuffer
-import java.util.*
 import java.util.concurrent.CountDownLatch
 
-class FlowerServiceRunnable : GRPCRunnable {
+class FlowerServiceRunnable(private val setResultText: (String) -> Unit) : GRPCRunnable {
     private var failed: Throwable? = null
     private var requestObserver: StreamObserver<ClientMessage?>? = null
 
@@ -18,20 +17,18 @@ class FlowerServiceRunnable : GRPCRunnable {
     override fun run(
         flowerClient: FlowerClient,
         blockingStub: FlowerServiceGrpc.FlowerServiceBlockingStub,
-        asyncStub: FlowerServiceGrpc.FlowerServiceStub,
-//        activity: MainActivity
+        asyncStub: FlowerServiceGrpc.FlowerServiceStub
     ) {
         join(
             flowerClient,
             asyncStub
-            //, activity
         )
     }
 
     @Throws(InterruptedException::class, RuntimeException::class)
     private fun join(
         flowerClient: FlowerClient,
-        asyncStub: FlowerServiceGrpc.FlowerServiceStub, //activity: MainActivity
+        asyncStub: FlowerServiceGrpc.FlowerServiceStub
     ) {
         val finishLatch = CountDownLatch(1)
         requestObserver = asyncStub.join(
@@ -39,41 +36,43 @@ class FlowerServiceRunnable : GRPCRunnable {
                 override fun onNext(msg: ServerMessage) {
                     handleMessage(
                         flowerClient,
-                        msg//, activity
+                        msg
                     )
                 }
 
                 override fun onError(t: Throwable) {
                     failed = t
                     finishLatch.countDown()
-                    Log.e("MainActivity.TAG", t.message!!)
+                    Log.e("MainActivity.Error", t.message!!)
+
+//                    setResultText("Error Service Runnable " + t.message)
                 }
 
                 override fun onCompleted() {
                     finishLatch.countDown()
-                    Log.e("MainActivity.TAG", "Done")
+                    Log.e("MainActivity.Completed", "Done")
+//                    setResultText("Service Runnable completed")
                 }
             })
     }
 
     private fun handleMessage(
         flowerClient: FlowerClient,
-        message: ServerMessage//, activity: MainActivity
+        message: ServerMessage
     ) {
         try {
-            // TODO: 30.12.21 use proper TAG
             val weights: Array<ByteBuffer>
             var c: ClientMessage? = null
             when {
                 message.hasGetParameters() -> {
-                    Log.e("MainActivity.TAG", "Handling GetParameters")
-                    //                activity.setResultText("Handling GetParameters message from the server.")
+                    Log.e("FlowerServiceRunnable", "Handling GetParameters")
+                    setResultText("Handling GetParameters message from the server.")
                     weights = flowerClient.getWeights()
                     c = weightsAsProto(weights)
                 }
                 message.hasFitIns() -> {
-                    Log.e("MainActivity.TAG", "Handling FitIns")
-                    //                activity.setResultText("Handling Fit request from the server.")
+                    Log.e("FlowerServiceRunnable", "Handling FitIns")
+                    setResultText("Handling Fit request from the server.")
                     val layers: List<ByteString> = message.fitIns.parameters.tensorsList
                     val epochConfig: Scalar = message.fitIns.configMap
                         .getOrDefault("local_epochs", Scalar.newBuilder().setSint64(1).build())
@@ -89,8 +88,8 @@ class FlowerServiceRunnable : GRPCRunnable {
                     c = fitResAsProto(outputs.first, outputs.second)
                 }
                 message.hasEvaluateIns() -> {
-                    Log.e("MainActivity.TAG", "Handling EvaluateIns")
-                    //                activity.setResultText("Handling Evaluate request from the server")
+                    Log.e("FlowerServiceRunnable", "Handling EvaluateIns")
+                    setResultText("Handling Evaluate request from the server")
                     val layers: List<ByteString> =
                         message.evaluateIns.parameters.tensorsList
 
@@ -101,17 +100,20 @@ class FlowerServiceRunnable : GRPCRunnable {
                     }
                     val inference: Pair<Pair<Float, Float>, Int> = flowerClient.evaluate(newWeights)
                     val loss = inference.first.first
-                    //                    val accuracy = inference.first.second
-                    //                activity.setResultText("Test Accuracy after this round = $accuracy")
+                    val accuracy = inference.first.second
+                    setResultText("Test Accuracy after this round = $accuracy")
                     val testSize = inference.second
                     c = evaluateResAsProto(loss, testSize)
                 }
+                else -> {
+                    setResultText("Some Problem within the message handling occurred ")
+                }
             }
             requestObserver!!.onNext(c)
-//            activity.setResultText("Response sent to the server")
+            setResultText("Response sent to the server")
             c = null
         } catch (e: Exception) {
-            Log.e("MainActivity.TAG", e.message!!)
+            Log.e("FlowerServiceRunnable", e.message!!)
         }
     }
 
