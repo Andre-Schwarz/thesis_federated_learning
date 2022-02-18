@@ -102,7 +102,7 @@ class TrainingFragment : Fragment() {
             }
 
             binding.buttonLoadData.setOnClickListener {
-                val clientId = Integer.valueOf(binding.editClientId.text.toString())
+                val clientId = binding.editClientId.text.toString()
                 trainingViewModel.handleLoadDataButton(clientId)
             }
             binding.buttonEstablishConnection.setOnClickListener {

@@ -5,6 +5,7 @@ import android.os.Handler
 import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,7 +17,7 @@ import io.grpc.ManagedChannel
 import io.grpc.ManagedChannelBuilder
 
 class TrainingViewModel(
-    context: Context,
+    private val context: Context,
     private val flowerClient: FlowerClient,
     private val setResultText: (String) -> Unit
 ) : ViewModel() {
@@ -88,48 +89,27 @@ class TrainingViewModel(
 
     // region button commands
 
-    fun handleLoadDataButton(clientID: Int?) {
-        clientID?.let {
-            if (clientID > 10 || clientID < 1) {
-
+    fun handleLoadDataButton(clientID: String?) {
+        if (!clientID.isNullOrEmpty()) {
+            val clientIdValue = Integer.valueOf(clientID)
+            clientIdValue.let {
+                val handler = Handler()
+                handler.postDelayed({
+                    setResultText("Going to load the Training dataset with $clientIdValue")
+                    flowerClient.loadData(clientIdValue)
+                    _loadDataImageDrawable.value = CHECKMARK_DRAWABLE_ID
+                    setResultText("Training dataset is loaded in memory.")
+                    _loadDataButtonEnabled.value = false
+                    _establishConnectionButtonEnabled.value = true
+                }, 1000)
             }
-            val handler = Handler()
-            handler.postDelayed({
-                setResultText("Going to load the Training dataset with $clientID")
-                flowerClient.loadData(clientID)
-                _loadDataImageDrawable.value = CHECKMARK_DRAWABLE_ID
-                setResultText("Training dataset is loaded in memory.")
-                _loadDataButtonEnabled.value = false
-                _establishConnectionButtonEnabled.value = true
-            }, 1000)
+        } else {
+            Toast.makeText(
+                context,
+                "Bitte geben Sie eine Client ID zwischen 1 und 10 ein",
+                Toast.LENGTH_LONG
+            ).show()
         }
-
-//        if (TextUtils.isEmpty(clientID)) {
-//            Toast.makeText(
-//                this,
-//                "Please enter a client partition ID between 1 and 10 (inclusive)",
-//                Toast.LENGTH_LONG
-//            ).show()
-//        } else if (device_id.getText().toString().toInt() > 10 || device_id.getText().toString()
-//                .toInt() < 1
-//        ) {
-//            Toast.makeText(
-//                this,
-//                "Please enter a client partition ID between 1 and 10 (inclusive)",
-//                Toast.LENGTH_LONG
-//            ).show()
-//        } else {
-//            MainActivity.hideKeyboard(this)
-//            setResultText("Loading the local training dataset in memory. It will take several seconds.")
-//            loadDataButton.setEnabled(false)
-//            val handler = Handler()
-//            handler.postDelayed({
-//                fc.loadData(device_id.getText().toString().toInt())
-//                setResultText("Training dataset is loaded in memory.")
-//                connectButton.setEnabled(true)
-//            }, 1000)
-//        }
-
     }
 
     fun handleEstablishConnectionButton(ip: String, port: Int) {
@@ -161,7 +141,8 @@ class TrainingViewModel(
 
     fun handleStartTrainingButton() {
         channel?.let { channel ->
-            val grpcTask = GrpcTask(flowerClient, setResultText, FlowerServiceRunnable(setResultText), channel)
+            val grpcTask =
+                GrpcTask(flowerClient, setResultText, FlowerServiceRunnable(setResultText), channel)
             grpcTask.execute()
 
             _startTrainingImageDrawable.value = CHECKMARK_DRAWABLE_ID
