@@ -20,21 +20,30 @@
             android:id="@+id/data_partition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1" />
+            android:text="Partition" />
 
         <RadioButton
             android:id="@+id/data_classes_full"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2" />
+            android:text="Klassen vollständig" />
 
         <RadioButton
             android:id="@+id/data_classes_half"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3" />
+            android:text="Klassen teilweise" />
 
     </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/classContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/data_selection"></LinearLayout>
 
     <TextView
         android:id="@+id/text_dashboard"
