@@ -24,33 +24,30 @@
         android:id="@+id/edit_client_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="Client ID"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:hint="Client ID"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/edit_server_ip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_client_id"
         android:hint="Server IP"
         android:text="192.168.188.47"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_client_id" />
 
     <EditText
         android:id="@+id/edit_server_port"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_server_ip"
         android:hint="Server Port"
         android:text="8999"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_server_ip" />
 
     <ImageView
         android:id="@+id/image_load_data"
@@ -59,18 +56,17 @@
         android:layout_marginStart="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_server_port"
-        tools:src="@drawable/cross"
-        />
+        tools:src="@drawable/cross" />
 
     <Button
         android:id="@+id/button_load_data"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        tools:text="Datensatz laden"
         android:layout_marginHorizontal="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image_load_data"
-        app:layout_constraintTop_toBottomOf="@id/edit_server_port" />
+        app:layout_constraintTop_toBottomOf="@id/edit_server_port"
+        tools:text="Datensatz laden" />
 
     <ImageView
         android:id="@+id/image_establish_connection"
@@ -79,18 +75,17 @@
         android:layout_marginStart="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_load_data"
-        tools:src="@drawable/cross"
-        />
+        tools:src="@drawable/cross" />
 
     <Button
         android:id="@+id/button_establish_connection"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        tools:text="Serververbindung aufbauen"
         android:layout_marginHorizontal="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image_establish_connection"
-        app:layout_constraintTop_toBottomOf="@id/button_load_data" />
+        app:layout_constraintTop_toBottomOf="@id/button_load_data"
+        tools:text="Serververbindung aufbauen" />
 
 
     <ImageView
@@ -100,35 +95,54 @@
         android:layout_marginStart="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_establish_connection"
-        tools:src="@drawable/cross"
-        />
+        tools:src="@drawable/cross" />
 
     <Button
         android:id="@+id/button_start_training"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        tools:text="Training starten"
         android:layout_marginHorizontal="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image_start_training"
-        app:layout_constraintTop_toBottomOf="@id/button_establish_connection" />
+        app:layout_constraintTop_toBottomOf="@id/button_establish_connection"
+        tools:text="Training starten" />
 
-    <TextView
-        android:id="@+id/grpc_response_text"
-        android:layout_width="match_parent"
+    <!--    <TextView-->
+    <!--        android:id="@+id/grpc_response_text"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:background="#FAF2F2"-->
+    <!--        android:nestedScrollingEnabled="true"-->
+    <!--        android:overScrollMode="always"-->
+    <!--        android:scrollbarAlwaysDrawHorizontalTrack="false"-->
+    <!--        android:scrollbars="vertical"-->
+    <!--        android:text="Welcome to Flower! \n"-->
+    <!--        android:textAppearance="@style/TextAppearance.AppCompat.Body1"-->
+    <!--        android:textSize="12sp"-->
+    <!--        android:verticalScrollbarPosition="defaultPosition"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/button_start_training"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        />-->
+
+    <ScrollView
+        android:id="@+id/SCROLLER_ID"
+        android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:background="#FAF2F2"
-        android:nestedScrollingEnabled="true"
-        android:overScrollMode="always"
-        android:scrollbarAlwaysDrawHorizontalTrack="false"
+        android:fillViewport="true"
         android:scrollbars="vertical"
-        android:text="Welcome to Flower! \n"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="12sp"
-        android:verticalScrollbarPosition="defaultPosition"
-        app:layout_constraintTop_toBottomOf="@id/button_start_training"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_start_training">
+
+        <TextView
+            android:id="@+id/grpc_response_text"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:background="#FAF2F2" />
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

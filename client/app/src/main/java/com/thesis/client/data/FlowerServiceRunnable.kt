@@ -34,6 +34,8 @@ class FlowerServiceRunnable(private val setResultText: (String) -> Unit) : GRPCR
         requestObserver = asyncStub.join(
             object : StreamObserver<ServerMessage> {
                 override fun onNext(msg: ServerMessage) {
+//                    setResultText("OnNext: $msg")
+
                     handleMessage(
                         flowerClient,
                         msg
@@ -43,15 +45,15 @@ class FlowerServiceRunnable(private val setResultText: (String) -> Unit) : GRPCR
                 override fun onError(t: Throwable) {
                     failed = t
                     finishLatch.countDown()
-                    Log.e("MainActivity.Error", t.message!!)
+                    Log.e("MainActivity.Error", t.message!! + t.stackTrace)
 
-//                    setResultText("Error Service Runnable " + t.message)
+                    setResultText("Error Service Runnable " + t.message + t.stackTrace)
                 }
 
                 override fun onCompleted() {
                     finishLatch.countDown()
                     Log.e("MainActivity.Completed", "Done")
-//                    setResultText("Service Runnable completed")
+                    setResultText("Service Runnable completed")
                 }
             })
     }

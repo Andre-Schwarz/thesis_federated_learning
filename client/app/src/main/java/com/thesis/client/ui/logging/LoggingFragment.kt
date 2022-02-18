@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.thesis.client.GlobalViewModel
 import com.thesis.client.databinding.FragmentLoggingBinding
@@ -34,9 +33,9 @@ class LoggingFragment : Fragment() {
         val root: View = binding.root
 
 
-        globalViewModel.notifications.observe(viewLifecycleOwner, Observer { set ->
-            binding.grpcResponseText.text = set
-        })
+//        globalViewModel.notifications.observe(viewLifecycleOwner, Observer { set ->
+//            binding.grpcResponseText.text = set
+//        })
 
 
         return root

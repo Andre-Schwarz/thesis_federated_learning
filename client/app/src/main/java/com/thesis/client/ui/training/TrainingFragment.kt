@@ -2,6 +2,7 @@ package com.thesis.client.ui.training
 
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import com.thesis.client.GlobalViewModel
 import com.thesis.client.data.FlowerClient
 import com.thesis.client.databinding.FragmentTrainingBinding
 import java.util.*
+
 
 class TrainingFragment : Fragment() {
 
@@ -124,6 +126,8 @@ class TrainingFragment : Fragment() {
             trainingViewModel.startTrainingButtonEnabled.observe(viewLifecycleOwner) {
                 binding.buttonStartTraining.isEnabled = it
             }
+
+            binding.grpcResponseText.movementMethod = ScrollingMovementMethod()
         }
     }
 
@@ -132,7 +136,7 @@ class TrainingFragment : Fragment() {
         val time = dateFormat.format(Date())
 
         binding?.grpcResponseText?.append("\n$time   $text")
-        globalViewModel.addTextToLogging("\n$time   $text")
+//        globalViewModel.addTextToLogging("\n$time   $text")
 
     }
 
