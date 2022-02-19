@@ -38,7 +38,7 @@ class TrainingFragment : Fragment() {
 
         trainingViewModel = ViewModelProvider(
             this,
-            TrainingViewModelFactory(this.requireContext(), flowerClient, setResultText)
+            TrainingViewModelFactory(this.requireContext(), flowerClient, setResultText, globalViewModel)
         ).get(
             TrainingViewModel::class.java
         )
@@ -102,6 +102,8 @@ class TrainingFragment : Fragment() {
             }
 
             binding.buttonLoadData.setOnClickListener {
+//                Log.e("TAG", "bindViewData: " +  globalViewModel.selectedDataClasses.value)
+
                 val clientId = binding.editClientId.text.toString()
                 trainingViewModel.handleLoadDataButton(clientId)
             }

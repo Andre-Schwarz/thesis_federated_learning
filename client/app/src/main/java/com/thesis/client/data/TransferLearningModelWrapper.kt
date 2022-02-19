@@ -22,7 +22,8 @@ import java.util.concurrent.Future
  * This wrapper allows to run training continuously, using start/stop API, in contrast to
  * run-once API of [TransferLearningModel].
  */
-class TransferLearningModelWrapper internal constructor(context: Context) : Closeable {
+class TransferLearningModelWrapper internal constructor(context: Context, directoryName: String) :
+    Closeable {
 
     companion object {
         /**
@@ -33,7 +34,7 @@ class TransferLearningModelWrapper internal constructor(context: Context) : Clos
     }
 
     private val model: TransferLearningModel = TransferLearningModel(
-        AssetModelLoader(context, "model"),
+        AssetModelLoader(context, directoryName),
         listOf(
             "cat", "dog", "truck", "bird",
             "airplane", "ship", "frog", "horse", "deer",

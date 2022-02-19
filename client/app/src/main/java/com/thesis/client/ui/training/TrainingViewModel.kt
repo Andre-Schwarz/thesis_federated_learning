@@ -9,7 +9,9 @@ import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.thesis.client.GlobalViewModel
 import com.thesis.client.R
+import com.thesis.client.data.DATA_SELECTION_TYPE
 import com.thesis.client.data.FlowerClient
 import com.thesis.client.data.FlowerServiceRunnable
 import com.thesis.client.data.GrpcTask
@@ -19,7 +21,8 @@ import io.grpc.ManagedChannelBuilder
 class TrainingViewModel(
     private val context: Context,
     private val flowerClient: FlowerClient,
-    private val setResultText: (String) -> Unit
+    private val setResultText: (String) -> Unit,
+    private val globalViewModel: GlobalViewModel
 ) : ViewModel() {
 
     companion object {
@@ -96,7 +99,44 @@ class TrainingViewModel(
                 val handler = Handler()
                 handler.postDelayed({
                     setResultText("Going to load the Training dataset with $clientIdValue")
-                    flowerClient.loadData(clientIdValue)
+
+                    var filename: String?
+
+                    when (globalViewModel.dataSelectionType.value) {
+                        DATA_SELECTION_TYPE.PARTITION -> {
+                            filename = "data/partition/partition_" + (clientIdValue - 1)
+                            flowerClient.loadData(filename)
+                        }
+                        DATA_SELECTION_TYPE.CLASS_FULL -> {
+                            val selectedDataClasses = globalViewModel.selectedDataClasses.value
+                            if (selectedDataClasses != null) {
+                                for (dataClass in selectedDataClasses) {
+
+                                    filename = "data/single_classes_full/" + dataClass.className
+                                    flowerClient.loadData(filename)
+                                }
+                            }
+
+                        }
+                        DATA_SELECTION_TYPE.CLASS_HALF -> {
+                            val selectedDataClasses = globalViewModel.selectedDataClasses.value
+                            if (selectedDataClasses != null) {
+                                for (dataClass in selectedDataClasses) {
+
+                                    filename = "data/single_classes_half/" + dataClass.className
+                                    flowerClient.loadData(filename)
+                                }
+                            }
+                        }
+                        else -> {
+                            // todo throw error
+                        }
+                    }
+
+
+
+
+
                     _loadDataImageDrawable.value = CHECKMARK_DRAWABLE_ID
                     setResultText("Training dataset is loaded in memory.")
                     _loadDataButtonEnabled.value = false

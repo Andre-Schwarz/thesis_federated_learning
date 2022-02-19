@@ -22,7 +22,10 @@ class FlowerClient(private val context: Context) {
 
     }
 
-    private var tlModel: TransferLearningModelWrapper = TransferLearningModelWrapper(context)
+    private var tlModel: TransferLearningModelWrapper = TransferLearningModelWrapper(
+        context,
+        "model"
+    )
     private val lastLoss = MutableLiveData<Float>()
     private val isTraining = ConditionVariable()
     private var localEpochs = 1
@@ -53,11 +56,12 @@ class FlowerClient(private val context: Context) {
         }
     }
 
-    fun loadData(device_id: Int) {
+    fun loadData(filename: String) {
         try {
+            Log.e(TAG, "Going to load $filename")
             var reader = BufferedReader(
                 InputStreamReader(
-                    context.assets.open("data/partition_" + (device_id - 1) + "_train.txt")
+                    context.assets.open(filename + "_train.txt")
                 )
             )
             var line: String = ""
@@ -76,7 +80,7 @@ class FlowerClient(private val context: Context) {
             reader.close()
             i = 0
             reader =
-                BufferedReader(InputStreamReader(context.assets.open("data/partition_" + (device_id - 1) + "_test.txt")))
+                BufferedReader(InputStreamReader(context.assets.open(filename + "_test.txt")))
             while (reader.readLine().also {
                     if (it != null) {
                         line = it
