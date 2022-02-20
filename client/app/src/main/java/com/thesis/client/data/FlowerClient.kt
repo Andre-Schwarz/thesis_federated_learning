@@ -26,6 +26,12 @@ class FlowerClient(private val context: Context) {
         context,
         "model"
     )
+    private var tlModelMobiNet: TransferLearningModelWrapper = TransferLearningModelWrapper(
+        context,
+        "model_mobinet"
+    )
+    private var selectedModelWrapper: TransferLearningModelWrapper = tlModelMobiNet;
+
     private val lastLoss = MutableLiveData<Float>()
     private val isTraining = ConditionVariable()
     private var localEpochs = 1
@@ -54,6 +60,16 @@ class FlowerClient(private val context: Context) {
             tlModel.disableTraining()
             isTraining.open()
         }
+    }
+
+    fun selectModelArchitecture(modelArchitekture: MODEL_ARCHITEKTURE) {
+        if (modelArchitekture == MODEL_ARCHITEKTURE.CUSTOM) {
+            selectedModelWrapper = tlModel
+        } else if (modelArchitekture == MODEL_ARCHITEKTURE.MOBINET) {
+            selectedModelWrapper = tlModelMobiNet
+        }
+
+        Log.e(TAG, "Selected ModelArchitecture $modelArchitekture")
     }
 
     fun loadData(filename: String) {

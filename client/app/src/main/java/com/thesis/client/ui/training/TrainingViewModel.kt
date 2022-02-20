@@ -11,10 +11,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.thesis.client.GlobalViewModel
 import com.thesis.client.R
-import com.thesis.client.data.DATA_SELECTION_TYPE
-import com.thesis.client.data.FlowerClient
-import com.thesis.client.data.FlowerServiceRunnable
-import com.thesis.client.data.GrpcTask
+import com.thesis.client.data.*
 import io.grpc.ManagedChannel
 import io.grpc.ManagedChannelBuilder
 
@@ -101,6 +98,12 @@ class TrainingViewModel(
                     setResultText("Going to load the Training dataset with $clientIdValue")
 
                     var filename: String?
+                    val value = globalViewModel.selectedModelArchitecture.value
+                    if (value != null) {
+                        flowerClient.selectModelArchitecture(value)
+                    } else {
+                        flowerClient.selectModelArchitecture(MODEL_ARCHITEKTURE.MOBINET)
+                    }
 
                     when (globalViewModel.dataSelectionType.value) {
                         DATA_SELECTION_TYPE.PARTITION -> {
@@ -132,10 +135,6 @@ class TrainingViewModel(
                             // todo throw error
                         }
                     }
-
-
-
-
 
                     _loadDataImageDrawable.value = CHECKMARK_DRAWABLE_ID
                     setResultText("Training dataset is loaded in memory.")

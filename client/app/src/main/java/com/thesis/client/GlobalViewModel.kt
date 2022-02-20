@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.thesis.client.data.DATA_CLASSES
 import com.thesis.client.data.DATA_SELECTION_TYPE
 import com.thesis.client.data.DATA_SELECTION_TYPE.PARTITION
+import com.thesis.client.data.MODEL_ARCHITEKTURE
 
 class GlobalViewModel : ViewModel() {
 
@@ -25,5 +26,13 @@ class GlobalViewModel : ViewModel() {
 
     fun changeDataClassSelection(type: List<DATA_CLASSES>) {
         _selectedDataClasses.value = type
+    }
+
+    private val _selectedModelArchitecture = MutableLiveData<MODEL_ARCHITEKTURE>().apply {
+    }
+    val selectedModelArchitecture: LiveData<MODEL_ARCHITEKTURE> = _selectedModelArchitecture
+
+    fun changeSelectedModelArchitecture(type: MODEL_ARCHITEKTURE) {
+        _selectedModelArchitecture.value = type
     }
 }

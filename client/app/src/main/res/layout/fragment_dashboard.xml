@@ -7,6 +7,31 @@
     tools:context=".ui.dashboard.DashboardFragment">
 
     <RadioGroup
+        android:id="@+id/architecture_selection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checkedButton="@+id/architecture_custom"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/architecture_custom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Custom" />
+
+        <RadioButton
+            android:id="@+id/architecture_mobinet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mobinet" />
+
+
+    </RadioGroup>
+
+    <RadioGroup
         android:id="@+id/data_selection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,7 +39,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/architecture_selection">
 
         <RadioButton
             android:id="@+id/data_partition"

@@ -13,6 +13,7 @@ import com.thesis.client.GlobalViewModel
 import com.thesis.client.data.DATA_CLASSES
 import com.thesis.client.data.DATA_CLASSES.*
 import com.thesis.client.data.DATA_SELECTION_TYPE
+import com.thesis.client.data.MODEL_ARCHITEKTURE
 import com.thesis.client.databinding.FragmentDashboardBinding
 
 class DashboardFragment : Fragment() {
@@ -51,10 +52,40 @@ class DashboardFragment : Fragment() {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        bindArchitectureSelection()
         bindDataSelection()
         bindClassSelection()
 
         return root
+    }
+
+    private fun bindArchitectureSelection() {
+        globalViewModel.selectedModelArchitecture.value.let { type ->
+            when (type) {
+                MODEL_ARCHITEKTURE.CUSTOM -> {
+                    binding.architectureCustom.isChecked = true
+                }
+                MODEL_ARCHITEKTURE.MOBINET -> {
+                    binding.architectureMobinet.isChecked = true
+                }
+                else -> {
+                    binding.architectureMobinet.isChecked = true
+                }
+            }
+        }
+
+        binding.architectureCustom.setOnCheckedChangeListener { _, checkedId ->
+            if (checkedId) {
+                globalViewModel.changeSelectedModelArchitecture(MODEL_ARCHITEKTURE.CUSTOM)
+            }
+        }
+
+        binding.architectureMobinet.setOnCheckedChangeListener { _, checkedId ->
+            if (checkedId) {
+                globalViewModel.changeSelectedModelArchitecture(MODEL_ARCHITEKTURE.MOBINET)
+            }
+        }
+
     }
 
     private fun bindClassSelection() {
@@ -89,7 +120,6 @@ class DashboardFragment : Fragment() {
     }
 
     private fun bindDataSelection() {
-
         globalViewModel.dataSelectionType.value.let { type ->
             when (type) {
                 DATA_SELECTION_TYPE.PARTITION -> {
