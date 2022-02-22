@@ -1,5 +1,6 @@
 package com.thesis.client.ui.training
 
+import android.content.Context
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
@@ -38,7 +39,12 @@ class TrainingFragment : Fragment() {
 
         trainingViewModel = ViewModelProvider(
             this,
-            TrainingViewModelFactory(this.requireContext(), flowerClient, setResultText, globalViewModel)
+            TrainingViewModelFactory(
+                this.requireContext(),
+                flowerClient,
+                setResultText,
+                globalViewModel
+            )
         ).get(
             TrainingViewModel::class.java
         )
@@ -101,10 +107,26 @@ class TrainingFragment : Fragment() {
                 }
             }
 
-            binding.buttonLoadData.setOnClickListener {
-//                Log.e("TAG", "bindViewData: " +  globalViewModel.selectedDataClasses.value)
+            val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+            sharedPref?.let { sharedPreferences ->
+                val clientId =
+                    sharedPreferences.getString("clientId", "")
+                if (clientId != null) {
+                    binding.editClientId.setText(clientId)
+                }
+            }
 
+            binding.buttonLoadData.setOnClickListener {
                 val clientId = binding.editClientId.text.toString()
+
+                val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+                sharedPref?.let { sharedPreferences ->
+                    with(sharedPreferences.edit()) {
+                        putString("clientId", clientId)
+                        apply()
+                    }
+                }
+
                 trainingViewModel.handleLoadDataButton(clientId)
             }
             binding.buttonEstablishConnection.setOnClickListener {

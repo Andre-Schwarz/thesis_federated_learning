@@ -91,6 +91,7 @@ class TrainingViewModel(
 
     fun handleLoadDataButton(clientID: String?) {
         if (!clientID.isNullOrEmpty()) {
+            _loadDataButtonEnabled.value = false
             val clientIdValue = Integer.valueOf(clientID)
             clientIdValue.let {
                 val handler = Handler()
