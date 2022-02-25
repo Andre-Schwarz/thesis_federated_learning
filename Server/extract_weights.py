@@ -21,4 +21,4 @@ print("\n== Output details ==")
 print("name:", output_details[0]['name'])
 print("shape:", output_details[0]['shape'])
 print("type:", output_details[0]['dtype'])
-print("weights:", output_details[0]['weights'])
+

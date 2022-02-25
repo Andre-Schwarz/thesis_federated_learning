@@ -19,7 +19,7 @@ from flwr.common import (
 
 
 # checkpoint_path = "./weights/round-10-weights.npz"
-checkpoint_path = "./round-10-parameters.npz"
+checkpoint_path = "./round-10-weights.npz"
 # Define a simple sequential model
 
 
@@ -35,13 +35,13 @@ def create_model():
     #                 input_shape=(32, 32, 3), classes=10)
     # )
 
-    model = tf.keras.Sequential(
-        MobileNetV2(include_top=True, weights=None,
-                    input_shape=(32, 32, 3), classes=10)
-    )
-
-    # model = MobileNetV2(include_top=True, weights=None,
+    # model = tf.keras.Sequential(
+    #     MobileNetV2(include_top=True, weights=None,
     #                 input_shape=(32, 32, 3), classes=10)
+    # )
+
+    model = MobileNetV2(include_top=True, weights=None,
+                    input_shape=(32, 32, 3), classes=10)
 
 
 
