@@ -1,7 +1,5 @@
-from tensorflow.keras.applications import MobileNetV2
-from typing import Any, Callable, Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple
 from numpy import arange, load
-import json
 import flwr as fl
 import tensorflow as tf
 import numpy as np
@@ -18,8 +16,6 @@ from flwr.common import (
     Weights,
 )
 from flwr.server.strategy.aggregate import aggregate, weighted_loss_avg
-checkpoint_path = "./round-10-weights.npz"
-
 
 def create_model():
     model = tf.keras.Sequential(
@@ -45,11 +41,11 @@ def create_model():
 def get_eval_fn(model):
     """Return an evaluation function for server-side evaluation."""
 
-    # Load data and model here to avoid the overhead of doing it in `evaluate` itself
-    (x_train, y_train), _ = tf.keras.datasets.cifar10.load_data()
+    cifar10 = tf.keras.datasets.cifar10
+    (trainImages, trainLabels), (testImages, testLabels) = cifar10.load_data()
 
-    # Use the last 5k training examples as a validation set
-    x_val, y_val = x_train[45000:50000], y_train[45000:50000]
+    trainImages = trainImages / 255
+    testImages = testImages / 255
 
     # The `evaluate` function will be called after every round
     def evaluate(weights: fl.common.Weights) -> Optional[Tuple[float, float]]:
@@ -61,9 +57,9 @@ def get_eval_fn(model):
         weights[8] = weights[8].reshape((84, 10))
 
         model.set_weights(weights)  # Update model with the latest parameters
-        loss, accuracy = model.evaluate(x_val, y_val)
-        print("Untrained model, accuracy: {:5.2f}%".format(100 * accuracy))
-        return loss, accuracy
+        loss, accuracy = model.evaluate(testImages, testLabels)
+        print("Model, accuracy: {:5.2f}%".format(100 * accuracy))
+        return loss, {"accuracy": accuracy}
 
     return evaluate
 
@@ -103,8 +99,8 @@ def main() -> None:
         min_fit_clients=4,
         min_eval_clients=4,
         min_available_clients=4,
-        eval_fn=get_eval_fn(model),
-        # eval_fn=None,
+        # eval_fn=get_eval_fn(model),
+        eval_fn=None,
         on_fit_config_fn=fit_config,
         initial_parameters=None,
     )

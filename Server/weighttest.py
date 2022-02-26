@@ -27,48 +27,18 @@ def ndarray_to_bytes(ndarray: np.ndarray) -> bytes:
     return cast(bytes, ndarray.tobytes())
 
 
-data = load('./round-10-weights.npz', allow_pickle=True)
-lst = data.f.arr_0
+data = load('./round-30-weights.npz', allow_pickle=True)
+weights = data.f.arr_0
 
-print(lst[8].shape)
+weights[0] = weights[0].reshape((5, 5, 3, 6))
+weights[2] = weights[2].reshape((5, 5, 6, 16))
+weights[4] = weights[4].reshape((1600, 120))
+weights[6] = weights[6].reshape((120, 84))
+weights[8] = weights[8].reshape((84, 10))
 
-# print(lst[0].reshape((5,5,3,6)).shape)
-lst[0] = lst[0].reshape((5, 5, 3, 6))
-lst[2] = lst[2].reshape((5, 5, 6, 16))
-lst[4] = lst[4].reshape((1600, 120))
-lst[6] = lst[6].reshape((120, 84))
-lst[8] = lst[8].reshape((84, 10))
-
-
-# # for item in lst:
-# #     print(item)
-# #     print(data[item])
-
-# print(weights_to_parameters(weights=lst))
 
 
 def create_model():
-    # model = tf.keras.Sequential(
-    #     [tf.keras.Input(shape=(32, 32, 3)),
-    #      tf.keras.layers.Lambda(lambda x: x)],
-    #     MobileNetV2(include_top=True, weights=None,
-    #                 input_shape=(32, 32, 3), classes=10)
-    # )
-
-    # model = tf.keras.Sequential(
-    #     MobileNetV2(include_top=True, weights=None,
-    #                 input_shape=(32, 32, 3), classes=10)
-    # )
-
-    # model = MobileNetV2(include_top=False, weights=None,
-    #                     input_shape=(32, 32, 3), classes=10)
-
-    # model.compile(optimizer='adam',
-    #               loss=tf.losses.SparseCategoricalCrossentropy(
-    #                   from_logits=True),
-    #               metrics=[tf.metrics.SparseCategoricalAccuracy()])
-
-
     model = tf.keras.Sequential(
         [
             tf.keras.Input(shape=(32, 32, 3)),
@@ -93,8 +63,8 @@ x_val, y_val = x_train[45000:50000], y_train[45000:50000]
 
 # 
 
-(train_images, train_labels), (test_images,
-                               test_labels) = datasets.cifar10.load_data()
+# (train_images, train_labels), (test_images,
+#                                test_labels) = datasets.cifar10.load_data()
 
 # Normalize pixel values to be between 0 and 1
 # train_images, test_images = train_images / 255.0, test_images / 255.0
@@ -102,8 +72,13 @@ x_val, y_val = x_train[45000:50000], y_train[45000:50000]
 # Create a basic model instance
 model = create_model()
 
+
+# for layer in model.layers:
+#     print(layer.input_shape)
+
+
 # model.load_weights(checkpoint_path)
-model.set_weights(lst)
+model.set_weights(weights)
 model.compile("adam", "sparse_categorical_crossentropy", metrics=["accuracy"])
 
 # Evaluate the model
