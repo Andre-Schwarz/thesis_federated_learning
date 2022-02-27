@@ -16,6 +16,7 @@ from flwr.common import (
     Weights,
 )
 from flwr.server.strategy.aggregate import aggregate, weighted_loss_avg
+from functools import reduce
 
 def create_model():
     model = tf.keras.Sequential(
@@ -66,29 +67,112 @@ def get_eval_fn(model):
 
 # Load and compile model for server-side parameter evaluation
 model = create_model()
-
+(x_train, y_train), _ = tf.keras.datasets.cifar10.load_data()
+x_val, y_val = x_train, y_train
 class SaveModelStrategy(fl.server.strategy.FedAvgAndroid):
+    # def aggregate_fit(
+    #     self,
+    #     rnd: int,
+    #     results: List[Tuple[ClientProxy, FitRes]],
+    #     failures: List[BaseException],
+    # ) -> Tuple[Optional[Parameters], Dict[str, Scalar]]:
+    #     parameters = super().aggregate_fit(rnd, results, failures)
+    #     if parameters is not None:
+    #         # Save weights
+    #         print(f"Saving round {rnd} parameters...")
+    #         np.savez(f"round-{rnd}-parameters.npz", *parameters)
+
+    #         weights_results = [
+    #             (self.parameters_to_weights(fit_res.parameters), fit_res.num_examples)
+    #             for client, fit_res in results
+    #         ]
+
+
+    #         print(f"Saving round {rnd} weights...")
+    #         np.savez(f"round-{rnd}-weights.npz",aggregate(weights_results))
+    #     return parameters
+
+    def weights_to_parameters(self, weights: Weights) -> Parameters:
+        """Convert NumPy weights to parameters object."""
+        tensors = [self.ndarray_to_bytes(ndarray) for ndarray in weights]
+        return Parameters(tensors=tensors, tensor_type="numpy.nda")
+
+    def aggregate(self, results: List[Tuple[Weights, int]]) -> Weights:
+        """Compute weighted average."""
+        # Calculate the total number of examples used during training
+        num_examples_total = sum([num_examples for _, num_examples in results])
+
+        # Create a list of weights, each multiplied by the related number of examples
+        weighted_weights = [
+            [layer * num_examples for layer in weights] for weights, num_examples in results
+        ]
+        
+       
+        # for weights, num_examples in results:
+        #     print(f"num_examples {num_examples}")
+
+        #     mod = create_model()
+
+        #     weights[0] = weights[0].reshape((5, 5, 3, 6))
+        #     weights[2] = weights[2].reshape((5, 5, 6, 16))
+        #     weights[4] = weights[4].reshape((1600, 120))
+        #     weights[6] = weights[6].reshape((120, 84))
+        #     weights[8] = weights[8].reshape((84, 10))
+
+        #     mod.set_weights(weights)
+        #     mod.compile("adam", "sparse_categorical_crossentropy",
+        #                   metrics=["accuracy"])
+
+        #     loss, acc = mod.evaluate(x_val/255, y_val)
+        #     print("agg_model, accuracy: {:5.2f}%".format(100 * acc))
+
+        # print(f"num_examples_total {num_examples_total}")
+
+        # Compute average weights of each layer
+        weights_prime: Weights = [
+            reduce(np.add, layer_updates) / num_examples_total
+            for layer_updates in zip(*weighted_weights)
+        ]
+
+
+        # mod2 = create_model()
+        # weights2 = weights_prime.copy
+        # weights2[0] = weights2[0].reshape((5, 5, 3, 6))
+        # weights2[2] = weights2[2].reshape((5, 5, 6, 16))
+        # weights2[4] = weights2[4].reshape((1600, 120))
+        # weights2[6] = weights2[6].reshape((120, 84))
+        # weights2[8] = weights2[8].reshape((84, 10))
+
+        # mod2.set_weights(weights2)
+        # mod2.compile("adam", "sparse_categorical_crossentropy",
+        #             metrics=["accuracy"])
+
+        # loss, acc = mod2.evaluate(x_val, y_val)
+        # print("global_model, accuracy: {:5.2f}%".format(100 * acc))
+
+
+        return weights_prime
+
+
     def aggregate_fit(
         self,
         rnd: int,
         results: List[Tuple[ClientProxy, FitRes]],
         failures: List[BaseException],
     ) -> Tuple[Optional[Parameters], Dict[str, Scalar]]:
-        parameters = super().aggregate_fit(rnd, results, failures)
-        if parameters is not None:
-            # Save weights
-            print(f"Saving round {rnd} parameters...")
-            np.savez(f"round-{rnd}-parameters.npz", *parameters)
-
-            weights_results = [
-                (self.parameters_to_weights(fit_res.parameters), fit_res.num_examples)
-                for client, fit_res in results
+        """Aggregate fit results using weighted average."""
+        if not results:
+            return None, {}
+            # Do not aggregate if there are failures and failures are not accepted
+        if not self.accept_failures and failures:
+            return None, {}
+            # Convert results
+        weights_results = [
+            (self.parameters_to_weights(fit_res.parameters), fit_res.num_examples)
+            for client, fit_res in results
             ]
 
-
-            print(f"Saving round {rnd} weights...")
-            np.savez(f"round-{rnd}-weights.npz",aggregate(weights_results))
-        return parameters
+        return self.weights_to_parameters(self.aggregate(weights_results)), {}
 
 
 def main() -> None:
@@ -99,8 +183,8 @@ def main() -> None:
         min_fit_clients=4,
         min_eval_clients=4,
         min_available_clients=4,
-        # eval_fn=get_eval_fn(model),
-        eval_fn=None,
+        eval_fn=get_eval_fn(model),
+        # eval_fn=None,
         on_fit_config_fn=fit_config,
         initial_parameters=None,
     )
