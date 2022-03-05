@@ -1,15 +1,47 @@
 from numpy import arange, load
+from keras.models import load_model
+from typing import Dict, List, Optional, Tuple, cast
 
 import tensorflow as tf
+import numpy as np
+from flwr.common import (
+    EvaluateIns,
+    EvaluateRes,
+    FitIns,
+    FitRes,
+    Parameters,
+    Scalar,
+    Weights,
+)
 
-data = load('./round-10-weights.npz', allow_pickle=True)
+
+
+def ndarray_to_bytes(ndarray: np.ndarray) -> bytes:
+    """Serialize NumPy array to bytes."""
+    return cast(bytes, ndarray.tobytes())
+
+
+def weights_to_parameters(weights: Weights) -> Parameters:
+    """Convert NumPy weights to parameters object."""
+    tensors = [ndarray_to_bytes(ndarray) for ndarray in weights]
+    return Parameters(tensors=tensors, tensor_type="numpy.nda")
+
+data = load('./round-1-weights.npz', allow_pickle=True)
 weights = data.f.arr_0
+
+print(weights[0].shape)
+
+model = load_model('../saved_model/saved_model/my_model.h5')
+# weights2 = model.get_weights()
+
+
 
 weights[0] = weights[0].reshape((5, 5, 3, 6))
 weights[2] = weights[2].reshape((5, 5, 6, 16))
 weights[4] = weights[4].reshape((1600, 120))
 weights[6] = weights[6].reshape((120, 84))
 weights[8] = weights[8].reshape((84, 10))
+
 
 def create_model():
     model = tf.keras.Sequential(
@@ -27,12 +59,14 @@ def create_model():
 
     return model
 
-(x_train, y_train), _ = tf.keras.datasets.cifar10.load_data()
-x_val, y_val = x_train[45000:50000], y_train[45000:50000]
 
-model = create_model()
+cifar10 = tf.keras.datasets.cifar10
+(trainImages, trainLabels), (testImages, testLabels) = cifar10.load_data()
+
+
+# model = create_model()
 model.set_weights(weights)
 model.compile("adam", "sparse_categorical_crossentropy", metrics=["accuracy"])
 
-loss, acc = model.evaluate(x_val/255.0, y_val)
+loss, acc = model.evaluate(testImages/255, testLabels)
 print("Restored model, accuracy: {:5.2f}%".format(100 * acc))

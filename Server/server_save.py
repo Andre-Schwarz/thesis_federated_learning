@@ -1,4 +1,4 @@
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple, cast
 from numpy import arange, load
 import flwr as fl
 import tensorflow as tf
@@ -17,11 +17,14 @@ from flwr.common import (
 )
 from flwr.server.strategy.aggregate import aggregate, weighted_loss_avg
 from functools import reduce
+from keras.models import load_model
+
 
 def create_model():
     model = tf.keras.Sequential(
         [
             tf.keras.Input(shape=(32, 32, 3)),
+            tf.keras.layers.Rescaling(1./255, offset=0.0),
             tf.keras.layers.Conv2D(6, 5, activation="relu"),
             tf.keras.layers.MaxPooling2D(pool_size=(2, 2)),
             tf.keras.layers.Conv2D(16, 5, activation="relu"),
@@ -39,18 +42,36 @@ def create_model():
 
     return model
 
+
+def ndarray_to_bytes(ndarray: np.ndarray) -> bytes:
+    """Serialize NumPy array to bytes."""
+    return cast(bytes, ndarray.tobytes())
+
+
+def weights_to_parameters(weights: Weights) -> Parameters:
+    """Convert NumPy weights to parameters object."""
+    tensors = [ndarray_to_bytes(ndarray) for ndarray in weights]
+    return Parameters(tensors=tensors, tensor_type="numpy.nda")
+
+
+def load_parameters_from_disk():
+    model = load_model('../saved_model/saved_model/my_model.h5')
+
+    weights = model.get_weights()
+    return weights_to_parameters(weights)
+
+
 def get_eval_fn(model):
     """Return an evaluation function for server-side evaluation."""
 
     cifar10 = tf.keras.datasets.cifar10
     (trainImages, trainLabels), (testImages, testLabels) = cifar10.load_data()
 
-    trainImages = trainImages / 255
-    testImages = testImages / 255
+    testImages = testImages
 
     # The `evaluate` function will be called after every round
     def evaluate(weights: fl.common.Weights) -> Optional[Tuple[float, float]]:
-        
+
         weights[0] = weights[0].reshape((5, 5, 3, 6))
         weights[2] = weights[2].reshape((5, 5, 6, 16))
         weights[4] = weights[4].reshape((1600, 120))
@@ -69,6 +90,8 @@ def get_eval_fn(model):
 model = create_model()
 (x_train, y_train), _ = tf.keras.datasets.cifar10.load_data()
 x_val, y_val = x_train, y_train
+
+
 class SaveModelStrategy(fl.server.strategy.FedAvgAndroid):
     # def aggregate_fit(
     #     self,
@@ -86,7 +109,6 @@ class SaveModelStrategy(fl.server.strategy.FedAvgAndroid):
     #             (self.parameters_to_weights(fit_res.parameters), fit_res.num_examples)
     #             for client, fit_res in results
     #         ]
-
 
     #         print(f"Saving round {rnd} weights...")
     #         np.savez(f"round-{rnd}-weights.npz",aggregate(weights_results))
@@ -106,8 +128,7 @@ class SaveModelStrategy(fl.server.strategy.FedAvgAndroid):
         weighted_weights = [
             [layer * num_examples for layer in weights] for weights, num_examples in results
         ]
-        
-       
+
         # for weights, num_examples in results:
         #     print(f"num_examples {num_examples}")
 
@@ -134,7 +155,6 @@ class SaveModelStrategy(fl.server.strategy.FedAvgAndroid):
             for layer_updates in zip(*weighted_weights)
         ]
 
-
         # mod2 = create_model()
         # weights2 = weights_prime.copy
         # weights2[0] = weights2[0].reshape((5, 5, 3, 6))
@@ -150,9 +170,7 @@ class SaveModelStrategy(fl.server.strategy.FedAvgAndroid):
         # loss, acc = mod2.evaluate(x_val, y_val)
         # print("global_model, accuracy: {:5.2f}%".format(100 * acc))
 
-
         return weights_prime
-
 
     def aggregate_fit(
         self,
@@ -170,13 +188,18 @@ class SaveModelStrategy(fl.server.strategy.FedAvgAndroid):
         weights_results = [
             (self.parameters_to_weights(fit_res.parameters), fit_res.num_examples)
             for client, fit_res in results
-            ]
+        ]
+
+
+        print(f"Saving round {rnd} weights...")
+        np.savez(f"round-{rnd}-weights.npz",aggregate(weights_results))
+
+
 
         return self.weights_to_parameters(self.aggregate(weights_results)), {}
 
 
 def main() -> None:
-
     strategy = SaveModelStrategy(
         fraction_fit=1.0,
         fraction_eval=1.0,
@@ -186,11 +209,13 @@ def main() -> None:
         eval_fn=get_eval_fn(model),
         # eval_fn=None,
         on_fit_config_fn=fit_config,
-        initial_parameters=None,
+        # initial_parameters=None,
+        initial_parameters=load_parameters_from_disk(),
     )
 
     # Start Flower server for four rounds of federated learning
-    fl.server.start_server("[::]:8999", config={"num_rounds": 10}, strategy=strategy)
+    fl.server.start_server("[::]:8999", config={
+                           "num_rounds": 10}, strategy=strategy)
 
 
 def fit_config(rnd: int):
