@@ -31,16 +31,16 @@ weights = data.f.arr_0
 
 print(weights[0].shape)
 
-model = load_model('../saved_model/saved_model/my_model.h5')
+# model = load_model('../saved_model/saved_model/my_model.h5')
 # weights2 = model.get_weights()
 
 
 
-weights[0] = weights[0].reshape((5, 5, 3, 6))
-weights[2] = weights[2].reshape((5, 5, 6, 16))
-weights[4] = weights[4].reshape((1600, 120))
-weights[6] = weights[6].reshape((120, 84))
-weights[8] = weights[8].reshape((84, 10))
+# weights[0] = weights[0].reshape((5, 5, 3, 6))
+# weights[2] = weights[2].reshape((5, 5, 6, 16))
+# weights[4] = weights[4].reshape((1600, 120))
+# weights[6] = weights[6].reshape((120, 84))
+# weights[8] = weights[8].reshape((84, 10))
 
 
 def create_model():
@@ -64,7 +64,7 @@ cifar10 = tf.keras.datasets.cifar10
 (trainImages, trainLabels), (testImages, testLabels) = cifar10.load_data()
 
 
-# model = create_model()
+model = create_model()
 model.set_weights(weights)
 model.compile("adam", "sparse_categorical_crossentropy", metrics=["accuracy"])
 

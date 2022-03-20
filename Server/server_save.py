@@ -24,7 +24,7 @@ def create_model():
     model = tf.keras.Sequential(
         [
             tf.keras.Input(shape=(32, 32, 3)),
-            tf.keras.layers.Rescaling(1./255, offset=0.0),
+            # tf.keras.layers.Rescaling(1./255, offset=0.0),
             tf.keras.layers.Conv2D(6, 5, activation="relu"),
             tf.keras.layers.MaxPooling2D(pool_size=(2, 2)),
             tf.keras.layers.Conv2D(16, 5, activation="relu"),
@@ -67,8 +67,6 @@ def get_eval_fn(model):
     cifar10 = tf.keras.datasets.cifar10
     (trainImages, trainLabels), (testImages, testLabels) = cifar10.load_data()
 
-    testImages = testImages
-
     # The `evaluate` function will be called after every round
     def evaluate(weights: fl.common.Weights) -> Optional[Tuple[float, float]]:
 
@@ -79,7 +77,7 @@ def get_eval_fn(model):
         weights[8] = weights[8].reshape((84, 10))
 
         model.set_weights(weights)  # Update model with the latest parameters
-        loss, accuracy = model.evaluate(testImages, testLabels)
+        loss, accuracy = model.evaluate(testImages/255, testLabels)
         print("Model, accuracy: {:5.2f}%".format(100 * accuracy))
         return loss, {"accuracy": accuracy}
 
@@ -88,9 +86,8 @@ def get_eval_fn(model):
 
 # Load and compile model for server-side parameter evaluation
 model = create_model()
-(x_train, y_train), _ = tf.keras.datasets.cifar10.load_data()
-x_val, y_val = x_train, y_train
-
+cifar10 = tf.keras.datasets.cifar10
+(trainImages, trainLabels), (testImages, testLabels) = cifar10.load_data()
 
 class SaveModelStrategy(fl.server.strategy.FedAvgAndroid):
     # def aggregate_fit(
@@ -129,25 +126,21 @@ class SaveModelStrategy(fl.server.strategy.FedAvgAndroid):
             [layer * num_examples for layer in weights] for weights, num_examples in results
         ]
 
-        # for weights, num_examples in results:
-        #     print(f"num_examples {num_examples}")
+        for weights, num_examples in results:
+            mod = create_model()
 
-        #     mod = create_model()
+            weights[0] = weights[0].reshape((5, 5, 3, 6))
+            weights[2] = weights[2].reshape((5, 5, 6, 16))
+            weights[4] = weights[4].reshape((1600, 120))
+            weights[6] = weights[6].reshape((120, 84))
+            weights[8] = weights[8].reshape((84, 10))
 
-        #     weights[0] = weights[0].reshape((5, 5, 3, 6))
-        #     weights[2] = weights[2].reshape((5, 5, 6, 16))
-        #     weights[4] = weights[4].reshape((1600, 120))
-        #     weights[6] = weights[6].reshape((120, 84))
-        #     weights[8] = weights[8].reshape((84, 10))
+            mod.set_weights(weights)
+            mod.compile("adam", "sparse_categorical_crossentropy",
+                          metrics=["accuracy"])
 
-        #     mod.set_weights(weights)
-        #     mod.compile("adam", "sparse_categorical_crossentropy",
-        #                   metrics=["accuracy"])
-
-        #     loss, acc = mod.evaluate(x_val/255, y_val)
-        #     print("agg_model, accuracy: {:5.2f}%".format(100 * acc))
-
-        # print(f"num_examples_total {num_examples_total}")
+            loss, acc = mod.evaluate(testImages/255, testLabels)
+            print("agg_model, accuracy: {:5.2f}%".format(100 * acc))
 
         # Compute average weights of each layer
         weights_prime: Weights = [
@@ -203,19 +196,19 @@ def main() -> None:
     strategy = SaveModelStrategy(
         fraction_fit=1.0,
         fraction_eval=1.0,
-        min_fit_clients=4,
-        min_eval_clients=4,
-        min_available_clients=4,
+        min_fit_clients=10,
+        min_eval_clients=10,
+        min_available_clients=10,
         eval_fn=get_eval_fn(model),
         # eval_fn=None,
         on_fit_config_fn=fit_config,
-        # initial_parameters=None,
-        initial_parameters=load_parameters_from_disk(),
+        initial_parameters=None,
+        # initial_parameters=load_parameters_from_disk(),
     )
 
     # Start Flower server for four rounds of federated learning
     fl.server.start_server("[::]:8999", config={
-                           "num_rounds": 10}, strategy=strategy)
+                           "num_rounds": 40}, strategy=strategy)
 
 
 def fit_config(rnd: int):
