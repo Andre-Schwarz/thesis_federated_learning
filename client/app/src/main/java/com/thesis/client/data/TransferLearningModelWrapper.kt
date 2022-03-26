@@ -35,10 +35,14 @@ class TransferLearningModelWrapper internal constructor(context: Context, direct
 
     private val model: TransferLearningModel = TransferLearningModel(
         AssetModelLoader(context, directoryName),
+//        listOf(
+//            "cat", "dog", "truck", "bird",
+//            "airplane", "ship", "frog", "horse", "deer",
+//            "automobile"
+//        )
         listOf(
-            "cat", "dog", "truck", "bird",
-            "airplane", "ship", "frog", "horse", "deer",
-            "automobile"
+            "airplane", "automobile", "bird", "cat", "deer",
+            "dog", "frog", "horse", "ship", "truck"
         )
     )
 
