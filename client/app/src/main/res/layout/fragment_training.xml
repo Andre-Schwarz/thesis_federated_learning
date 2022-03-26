@@ -87,7 +87,6 @@
         app:layout_constraintTop_toBottomOf="@id/button_load_data"
         tools:text="Serververbindung aufbauen" />
 
-
     <ImageView
         android:id="@+id/image_start_training"
         android:layout_width="50dp"
@@ -107,25 +106,6 @@
         app:layout_constraintTop_toBottomOf="@id/button_establish_connection"
         tools:text="Training starten" />
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/grpc_response_text"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        android:background="#FAF2F2"-->
-    <!--        android:nestedScrollingEnabled="true"-->
-    <!--        android:overScrollMode="always"-->
-    <!--        android:scrollbarAlwaysDrawHorizontalTrack="false"-->
-    <!--        android:scrollbars="vertical"-->
-    <!--        android:text="Welcome to Flower! \n"-->
-    <!--        android:textAppearance="@style/TextAppearance.AppCompat.Body1"-->
-    <!--        android:textSize="12sp"-->
-    <!--        android:verticalScrollbarPosition="defaultPosition"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/button_start_training"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        />-->
-
     <ScrollView
         android:id="@+id/SCROLLER_ID"
         android:layout_width="fill_parent"
@@ -142,7 +122,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1.0"
-            android:background="#FAF2F2" />
+            android:background="#f4f2f5" />
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

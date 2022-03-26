@@ -143,6 +143,11 @@ class TrainingFragment : Fragment() {
 
             trainingViewModel.loadDataButtonEnabled.observe(viewLifecycleOwner) {
                 binding.buttonLoadData.isEnabled = it
+                if (it == false) {
+                    binding.editClientId.isEnabled = false
+                    binding.editServerIp.isEnabled = false
+                    binding.editServerPort.isEnabled = false
+                }
             }
             trainingViewModel.establishConnectionButtonEnabled.observe(viewLifecycleOwner) {
                 binding.buttonEstablishConnection.isEnabled = it
