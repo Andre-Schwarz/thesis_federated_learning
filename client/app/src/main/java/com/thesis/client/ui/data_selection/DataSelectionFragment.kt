@@ -1,4 +1,4 @@
-package com.thesis.client.ui.dashboard
+package com.thesis.client.ui.data_selection
 
 import android.os.Bundle
 import android.util.Log
@@ -14,12 +14,12 @@ import com.thesis.client.data.DATA_CLASSES
 import com.thesis.client.data.DATA_CLASSES.*
 import com.thesis.client.data.DATA_SELECTION_TYPE
 import com.thesis.client.data.ModelArchitecture
-import com.thesis.client.databinding.FragmentDashboardBinding
+import com.thesis.client.databinding.FragmentDataSelectionBinding
 
-class DashboardFragment : Fragment() {
+class DataSelectionFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
-    private var _binding: FragmentDashboardBinding? = null
+    private lateinit var dataSelectionViewModel: DataSelectionViewModel
+    private var _binding: FragmentDataSelectionBinding? = null
     private val globalViewModel: GlobalViewModel by activityViewModels()
 
     // This property is only valid between onCreateView and
@@ -46,10 +46,10 @@ class DashboardFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
+        dataSelectionViewModel =
+            ViewModelProvider(this).get(DataSelectionViewModel::class.java)
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentDataSelectionBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         bindArchitectureSelection()

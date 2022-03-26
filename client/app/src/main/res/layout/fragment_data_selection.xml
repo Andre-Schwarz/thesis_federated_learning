@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.dashboard.DashboardFragment">
+    tools:context=".ui.data_selection.DataSelectionFragment">
 
     <RadioGroup
         android:id="@+id/architecture_selection"
@@ -26,7 +26,7 @@
             android:id="@+id/architecture_mobinet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mobinet" />
+            android:text="Mobilenet" />
 
 
     </RadioGroup>
@@ -71,7 +71,7 @@
         app:layout_constraintTop_toBottomOf="@id/data_selection"></LinearLayout>
 
     <TextView
-        android:id="@+id/text_dashboard"
+        android:id="@+id/text_data_selection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

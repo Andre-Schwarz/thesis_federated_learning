@@ -133,7 +133,7 @@ class TrainingViewModel(
                             }
                         }
                         else -> {
-                            // todo throw error
+                            setResultText("No Data for training selected")
                         }
                     }
 
@@ -155,11 +155,11 @@ class TrainingViewModel(
     fun handleEstablishConnectionButton(ip: String, port: Int) {
         if (TextUtils.isEmpty(ip) || !Patterns.IP_ADDRESS.matcher(ip).matches()) {
             Log.e("TAG", "handleEstablishConnectionButton: IP IS WRONG")
-//            Toast.makeText(
-//                this,
-//                "Please enter the correct IP and port of the FL server",
-//                Toast.LENGTH_LONG
-//            ).show()
+            Toast.makeText(
+                context,
+                "Please enter the correct IP and port of the FL server",
+                Toast.LENGTH_LONG
+            ).show()
         } else {
             channel =
                 ManagedChannelBuilder.forAddress(ip, port).maxInboundMessageSize(10 * 1024 * 1024)

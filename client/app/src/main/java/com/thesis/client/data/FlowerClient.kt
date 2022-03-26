@@ -14,8 +14,6 @@ import java.nio.ByteBuffer
 import java.util.concurrent.ExecutionException
 
 class FlowerClient(private val context: Context) {
-// TODO: 27.12.21 rewrite completely
-
     companion object {
         private const val LOWER_BYTE_MASK = 0xFF
         private const val TAG = "Flower"
@@ -44,13 +42,13 @@ class FlowerClient(private val context: Context) {
         tlModel.enableTraining { epoch, loss -> setLastLoss(epoch, loss) }
         Log.e(TAG, "Training enabled. Local Epochs = $localEpochs")
         isTraining.block()
-        return Pair.create(getWeights(), tlModel.size_Training)
+        return Pair.create(getWeights(), tlModel.trainingSize)
     }
 
     fun evaluate(weights: Array<ByteBuffer?>?): Pair<Pair<Float, Float>, Int> {
         tlModel.updateParameters(weights)
         tlModel.disableTraining()
-        return Pair.create(tlModel.calculateTestStatistics(), tlModel.size_Testing)
+        return Pair.create(tlModel.calculateTestStatistics(), tlModel.testingSize)
     }
 
     private fun setLastLoss(epoch: Int, newLoss: Float) {
@@ -119,10 +117,7 @@ class FlowerClient(private val context: Context) {
         val bitmap = BitmapFactory.decodeStream(context.assets.open(photoPath), null, options)
         val sampleClass = getClass(photoPath)
 
-        // get rgb equivalent and class
         val rgbImage = prepareImage(bitmap)
-
-        // add to the list.
         try {
             tlModel.addSample(rgbImage, sampleClass, isTraining).get()
         } catch (e: ExecutionException) {
@@ -140,10 +135,6 @@ class FlowerClient(private val context: Context) {
         return path.split("/").toTypedArray()[2]
     }
 
-    /**
-     * Normalizes a camera image to [0; 1], cropping it
-     * to size expected by the model and adjusting for camera rotation.
-     */
     private fun prepareImage(bitmap: Bitmap?): FloatArray {
         val modelImageSize: Int = TransferLearningModelWrapper.IMAGE_SIZE
         val normalizedRgb = FloatArray(modelImageSize * modelImageSize * 3)
@@ -161,5 +152,4 @@ class FlowerClient(private val context: Context) {
         }
         return normalizedRgb
     }
-
 }

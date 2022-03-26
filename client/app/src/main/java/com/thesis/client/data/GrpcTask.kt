@@ -18,8 +18,7 @@ class GrpcTask(
         return try {
             grpcRunnable.run(
                 flowerClient,
-                FlowerServiceGrpc.newBlockingStub(channel), FlowerServiceGrpc.newStub(channel),
-                //   activityReference
+                FlowerServiceGrpc.newBlockingStub(channel), FlowerServiceGrpc.newStub(channel)
             )
             "Connection to the FL server successful \n"
         } catch (e: Exception) {
@@ -33,6 +32,5 @@ class GrpcTask(
 
     override fun onPostExecute(result: String) {
         setResultText(result)
-//        activity.trainButton.setEnabled(false)
     }
 }
