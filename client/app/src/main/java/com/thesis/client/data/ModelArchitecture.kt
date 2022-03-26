@@ -1,6 +1,6 @@
 package com.thesis.client.data
 
-enum class MODEL_ARCHITEKTURE {
+enum class ModelArchitecture {
     CUSTOM,
-    MOBINET
+    MOBILENET
 }

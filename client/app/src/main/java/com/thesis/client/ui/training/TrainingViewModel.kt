@@ -103,7 +103,7 @@ class TrainingViewModel(
                     if (value != null) {
                         flowerClient.selectModelArchitecture(value)
                     } else {
-                        flowerClient.selectModelArchitecture(MODEL_ARCHITEKTURE.MOBINET)
+                        flowerClient.selectModelArchitecture(ModelArchitecture.CUSTOM)
                     }
 
                     when (globalViewModel.dataSelectionType.value) {

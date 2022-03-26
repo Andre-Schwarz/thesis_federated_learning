@@ -11,6 +11,4 @@ enum class DATA_CLASSES (val className: String) {
     HORSE("horse"),
     SHIP("ship"),
     TRUCK("truck")
-
-
 }

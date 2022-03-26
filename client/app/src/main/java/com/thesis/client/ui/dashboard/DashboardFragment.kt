@@ -13,7 +13,7 @@ import com.thesis.client.GlobalViewModel
 import com.thesis.client.data.DATA_CLASSES
 import com.thesis.client.data.DATA_CLASSES.*
 import com.thesis.client.data.DATA_SELECTION_TYPE
-import com.thesis.client.data.MODEL_ARCHITEKTURE
+import com.thesis.client.data.ModelArchitecture
 import com.thesis.client.databinding.FragmentDashboardBinding
 
 class DashboardFragment : Fragment() {
@@ -62,27 +62,26 @@ class DashboardFragment : Fragment() {
     private fun bindArchitectureSelection() {
         globalViewModel.selectedModelArchitecture.value.let { type ->
             when (type) {
-                MODEL_ARCHITEKTURE.CUSTOM -> {
+                ModelArchitecture.CUSTOM -> {
                     binding.architectureCustom.isChecked = true
                 }
-                MODEL_ARCHITEKTURE.MOBINET -> {
+                ModelArchitecture.MOBILENET -> {
                     binding.architectureMobinet.isChecked = true
                 }
                 else -> {
-                    binding.architectureMobinet.isChecked = true
                 }
             }
         }
 
         binding.architectureCustom.setOnCheckedChangeListener { _, checkedId ->
             if (checkedId) {
-                globalViewModel.changeSelectedModelArchitecture(MODEL_ARCHITEKTURE.CUSTOM)
+                globalViewModel.changeSelectedModelArchitecture(ModelArchitecture.CUSTOM)
             }
         }
 
         binding.architectureMobinet.setOnCheckedChangeListener { _, checkedId ->
             if (checkedId) {
-                globalViewModel.changeSelectedModelArchitecture(MODEL_ARCHITEKTURE.MOBINET)
+                globalViewModel.changeSelectedModelArchitecture(ModelArchitecture.MOBILENET)
             }
         }
 
