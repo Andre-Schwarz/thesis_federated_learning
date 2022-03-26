@@ -30,7 +30,7 @@ class FlowerClient(private val context: Context) {
         context,
         "model_mobinet"
     )
-    private var selectedModelWrapper: TransferLearningModelWrapper = tlModelMobiNet;
+    private var selectedModelWrapper: TransferLearningModelWrapper = tlModel
 
     private val lastLoss = MutableLiveData<Float>()
     private val isTraining = ConditionVariable()
@@ -62,14 +62,14 @@ class FlowerClient(private val context: Context) {
         }
     }
 
-    fun selectModelArchitecture(modelArchitekture: MODEL_ARCHITEKTURE) {
-        if (modelArchitekture == MODEL_ARCHITEKTURE.CUSTOM) {
+    fun selectModelArchitecture(modelArchitecture: ModelArchitecture) {
+        if (modelArchitecture == ModelArchitecture.CUSTOM) {
             selectedModelWrapper = tlModel
-        } else if (modelArchitekture == MODEL_ARCHITEKTURE.MOBINET) {
+        } else if (modelArchitecture == ModelArchitecture.MOBILENET) {
             selectedModelWrapper = tlModelMobiNet
         }
 
-        Log.e(TAG, "Selected ModelArchitecture $modelArchitekture")
+        Log.e(TAG, "Selected ModelArchitecture $modelArchitecture")
     }
 
     fun loadData(filename: String) {
@@ -80,7 +80,7 @@ class FlowerClient(private val context: Context) {
                     context.assets.open(filename + "_train.txt")
                 )
             )
-            var line: String = ""
+            var line = ""
             var i = 0
             while (
                 reader.readLine().also {
