@@ -89,7 +89,7 @@ model = create_model()
 cifar10 = tf.keras.datasets.cifar10
 (trainImages, trainLabels), (testImages, testLabels) = cifar10.load_data()
 
-class SaveModelStrategy(fl.server.strategy.FedAvgAndroid):
+class FedAvgAndroidSaveAndEvaluate(fl.server.strategy.FedAvgAndroid):
     # def aggregate_fit(
     #     self,
     #     rnd: int,
@@ -140,29 +140,13 @@ class SaveModelStrategy(fl.server.strategy.FedAvgAndroid):
                           metrics=["accuracy"])
 
             loss, acc = mod.evaluate(testImages/255, testLabels)
-            print("agg_model, accuracy: {:5.2f}%".format(100 * acc))
+            print("client_model, accuracy: {:5.2f}%".format(100 * acc))
 
         # Compute average weights of each layer
         weights_prime: Weights = [
             reduce(np.add, layer_updates) / num_examples_total
             for layer_updates in zip(*weighted_weights)
         ]
-
-        # mod2 = create_model()
-        # weights2 = weights_prime.copy
-        # weights2[0] = weights2[0].reshape((5, 5, 3, 6))
-        # weights2[2] = weights2[2].reshape((5, 5, 6, 16))
-        # weights2[4] = weights2[4].reshape((1600, 120))
-        # weights2[6] = weights2[6].reshape((120, 84))
-        # weights2[8] = weights2[8].reshape((84, 10))
-
-        # mod2.set_weights(weights2)
-        # mod2.compile("adam", "sparse_categorical_crossentropy",
-        #             metrics=["accuracy"])
-
-        # loss, acc = mod2.evaluate(x_val, y_val)
-        # print("global_model, accuracy: {:5.2f}%".format(100 * acc))
-
         return weights_prime
 
     def aggregate_fit(
@@ -183,17 +167,14 @@ class SaveModelStrategy(fl.server.strategy.FedAvgAndroid):
             for client, fit_res in results
         ]
 
-
         print(f"Saving round {rnd} weights...")
         np.savez(f"round-{rnd}-weights.npz",aggregate(weights_results))
-
-
 
         return self.weights_to_parameters(self.aggregate(weights_results)), {}
 
 
 def main() -> None:
-    strategy = SaveModelStrategy(
+    strategy = FedAvgAndroidSaveAndEvaluate(
         fraction_fit=1.0,
         fraction_eval=1.0,
         min_fit_clients=10,

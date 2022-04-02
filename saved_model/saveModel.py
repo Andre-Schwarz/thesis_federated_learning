@@ -45,7 +45,6 @@ testData = testData.map(process)
 def create_model():
     model = tf.keras.Sequential(
         [
-
             tf.keras.Input(shape=(32, 32, 3)),
             tf.keras.layers.Rescaling(1./255, offset=0.0),
             tf.keras.layers.Conv2D(6, 5, activation="relu"),
@@ -65,7 +64,6 @@ model = create_model()
 model.compile("adam", "sparse_categorical_crossentropy", metrics=["accuracy"])
 
 model.fit(trainData, epochs=5)
-
 
 cifar10 = tf.keras.datasets.cifar10
 (trainImages, trainLabels), (testImages, testLabels) = cifar10.load_data()

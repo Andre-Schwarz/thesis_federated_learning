@@ -120,7 +120,6 @@ class TrainingViewModel(
                                     flowerClient.loadData(filename)
                                 }
                             }
-
                         }
                         DATA_SELECTION_TYPE.CLASS_HALF -> {
                             val selectedDataClasses = globalViewModel.selectedDataClasses.value

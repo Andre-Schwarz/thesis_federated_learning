@@ -52,62 +52,62 @@ public class ModelCorrectnessTest {
     }
   }
 
-//  @Test
-//  public void shouldLearnToClassifyImages() throws IOException {
-//    Map<String, byte[]> zipFiles =
-//        ZipUtils.readAllZipFiles(
-//            InstrumentationRegistry.getInstrumentation().getContext(), "test_data.zip");
-//
-//    TransferLearningModel model =
-//        new TransferLearningModel(
-//            new AssetModelLoader(
-//                InstrumentationRegistry.getInstrumentation().getContext(), "model"),
-//            Arrays.asList("daisy", "dandelion", "roses", "sunflowers", "tulips"));
-//
-//    System.out.println("Going to add the samples.");
-//
-//    for (Sample sample : readSampleList(zipFiles.get("train.txt"))) {
-//      try {
-//        model.addSample(jpgBytesToRgb(zipFiles.get(sample.imagePath)), sample.className).get();
-//      } catch (InterruptedException e) {
-//        return;
-//      } catch (ExecutionException e) {
-//        throw new RuntimeException("Could not add training sample", e.getCause());
-//      }
-//    }
-//
-//    System.out.println("Finished adding the samples.");
-//
-//    try {
-//      model
-//          .train(
-//              NUM_EPOCHS,
-//              (epoch, loss) -> {
-//                System.out.printf("Epoch %d: loss = %.5f\n", epoch, loss);
-//              })
-//          .get();
-//    } catch (ExecutionException e) {
-//      throw new RuntimeException(e.getCause());
-//    } catch (InterruptedException e) {
-//      // Exit peacefully.
-//    }
-//
-//    int correct = 0;
-//    int total = 0;
-//    for (Sample sample : readSampleList(zipFiles.get("val.txt"))) {
-//      Prediction[] predictions = model.predict(jpgBytesToRgb(zipFiles.get(sample.imagePath)));
-//      if (predictions[0].getClassName().equals(sample.className)) {
-//        correct++;
-//      }
-//      total++;
-//    }
-//
-//    float accuracy = correct / (float) total;
-//    System.out.printf("Accuracy is %.5f\n", accuracy);
-//    assertTrue(
-//        String.format("Accuracy is %.5f, expected at least %.5f", accuracy, TARGET_ACCURACY),
-//        accuracy >= TARGET_ACCURACY);
-//  }
+  @Test
+  public void shouldLearnToClassifyImages() throws IOException {
+    Map<String, byte[]> zipFiles =
+        ZipUtils.readAllZipFiles(
+            InstrumentationRegistry.getInstrumentation().getContext(), "test_data.zip");
+
+    TransferLearningModel model =
+        new TransferLearningModel(
+            new AssetModelLoader(
+                InstrumentationRegistry.getInstrumentation().getContext(), "model"),
+            Arrays.asList("daisy", "dandelion", "roses", "sunflowers", "tulips"));
+
+    System.out.println("Going to add the samples.");
+
+    for (Sample sample : readSampleList(zipFiles.get("train.txt"))) {
+      try {
+        model.addSample(jpgBytesToRgb(zipFiles.get(sample.imagePath)), sample.className).get();
+      } catch (InterruptedException e) {
+        return;
+      } catch (ExecutionException e) {
+        throw new RuntimeException("Could not add training sample", e.getCause());
+      }
+    }
+
+    System.out.println("Finished adding the samples.");
+
+    try {
+      model
+          .train(
+              NUM_EPOCHS,
+              (epoch, loss) -> {
+                System.out.printf("Epoch %d: loss = %.5f\n", epoch, loss);
+              })
+          .get();
+    } catch (ExecutionException e) {
+      throw new RuntimeException(e.getCause());
+    } catch (InterruptedException e) {
+      // Exit peacefully.
+    }
+
+    int correct = 0;
+    int total = 0;
+    for (Sample sample : readSampleList(zipFiles.get("val.txt"))) {
+      Prediction[] predictions = model.predict(jpgBytesToRgb(zipFiles.get(sample.imagePath)));
+      if (predictions[0].getClassName().equals(sample.className)) {
+        correct++;
+      }
+      total++;
+    }
+
+    float accuracy = correct / (float) total;
+    System.out.printf("Accuracy is %.5f\n", accuracy);
+    assertTrue(
+        String.format("Accuracy is %.5f, expected at least %.5f", accuracy, TARGET_ACCURACY),
+        accuracy >= TARGET_ACCURACY);
+  }
 
   private Iterable<Sample> readSampleList(byte[] sampleListBytes) {
     BufferedReader linesReader = new BufferedReader(new InputStreamReader(
