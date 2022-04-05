@@ -50,7 +50,7 @@ head = tf.keras.Sequential(
 #     tf.keras.layers.Dense(10, activation='softmax')
 # ])
 
-head.compile(loss="categorical_crossentropy", optimizer="adam")
+head.compile(loss="categorical_crossentropy", optimizer="sgd")
 
 
 """Convert the model for TFLite.
@@ -63,7 +63,7 @@ Copy them in your Android code under the assets/model directory.
 
 base_path = bases.saved_model_base.SavedModelBase("identity_model")
 converter = TFLiteTransferConverter(
-    10, base_path, heads.KerasModelHead(head), optimizers.Adam(1e-3), train_batch_size=32
+    10, base_path, heads.KerasModelHead(head), optimizers.SGD(1e-3), train_batch_size=32
 )
 
 converter.convert_and_save("tflite_model")

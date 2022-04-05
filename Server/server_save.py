@@ -35,7 +35,7 @@ def create_model():
         ]
     )
 
-    model.compile(optimizer='adam',
+    model.compile(optimizer='sgd',
                   loss=tf.losses.SparseCategoricalCrossentropy(
                       from_logits=True),
                   metrics=[tf.metrics.SparseCategoricalAccuracy()])
@@ -136,7 +136,7 @@ class FedAvgAndroidSaveAndEvaluate(fl.server.strategy.FedAvgAndroid):
             weights[8] = weights[8].reshape((84, 10))
 
             mod.set_weights(weights)
-            mod.compile("adam", "sparse_categorical_crossentropy",
+            mod.compile("sgd", "sparse_categorical_crossentropy",
                           metrics=["accuracy"])
 
             loss, acc = mod.evaluate(testImages/255, testLabels)
@@ -189,7 +189,7 @@ def main() -> None:
 
     # Start Flower server for four rounds of federated learning
     fl.server.start_server("[::]:8999", config={
-                           "num_rounds": 40}, strategy=strategy)
+                           "num_rounds": 100}, strategy=strategy)
 
 
 def fit_config(rnd: int):
