@@ -15,7 +15,7 @@ trainData = tf.keras.utils.image_dataset_from_directory(
     batch_size=32)
 
 testData = tf.keras.utils.image_dataset_from_directory(
-    "./tTest/",
+    "./test/",
     seed=123,
     image_size=(32, 32),
     batch_size=32)
@@ -71,4 +71,4 @@ cifar10 = tf.keras.datasets.cifar10
 loss, accuracy = model.evaluate(testImages, testLabels)
 print("Model, accuracy: {:5.2f}%".format(100 * accuracy))
 
-model.save('./saved_model/my_model.h5')
+model.save('./saved_model/full_data.h5')
