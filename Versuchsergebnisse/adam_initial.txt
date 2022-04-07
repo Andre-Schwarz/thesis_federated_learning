@@ -1,1093 +1,482 @@
-INFO flower 2022-04-05 17:06:34,414 | server.py:130 | Evaluating initial parameters
-2022-04-05 17:06:34.680162: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:185] None of the MLIR Optimization Passes are enabled (registered 2)
-/Users/andreschwarz/Library/Caches/pypoetry/virtualenvs/android-flwr-tensorflow-th0Vop3x-py3.7/lib/python3.7/site-packages/keras/backend.py:4907: UserWarning: "`sparse_categorical_crossentropy` received `from_logits=True`, but the `output` argument was produced by a sigmoid or softmax activation and thus does not represent logits. Was this intended?"
-  '"`sparse_categorical_crossentropy` received `from_logits=True`, but '
-313/313 [==============================] - 1s 3ms/step - loss: 1.3087 - sparse_categorical_accuracy: 0.5365
-Model, accuracy: 53.65%
-INFO flower 2022-04-05 17:06:36,137 | server.py:137 | initial parameters (loss, other metrics): 1.308693289756775, {'accuracy': 0.5364999771118164}
-INFO flower 2022-04-05 17:06:36,137 | server.py:143 | FL starting
-DEBUG flower 2022-04-05 17:08:08,122 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:08:30,043 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 1 weights...
-/Users/andreschwarz/Library/Caches/pypoetry/virtualenvs/android-flwr-tensorflow-th0Vop3x-py3.7/lib/python3.7/site-packages/numpy/core/_asarray.py:136: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify 'dtype=object' when creating the ndarray
-  return array(a, dtype, copy=False, order=order, subok=True)
-313/313 [==============================] - 1s 3ms/step - loss: 1.7622 - accuracy: 0.4722
-client_model, accuracy: 47.22%
-313/313 [==============================] - 1s 3ms/step - loss: 1.8756 - accuracy: 0.4855
-client_model, accuracy: 48.55%
-313/313 [==============================] - 1s 3ms/step - loss: 1.5996 - accuracy: 0.5077
-client_model, accuracy: 50.77%
-313/313 [==============================] - 1s 3ms/step - loss: 1.6121 - accuracy: 0.5028
-client_model, accuracy: 50.28%
-313/313 [==============================] - 1s 3ms/step - loss: 1.6035 - accuracy: 0.5102
-client_model, accuracy: 51.02%
-313/313 [==============================] - 1s 3ms/step - loss: 1.6096 - accuracy: 0.5022
-client_model, accuracy: 50.22%
-313/313 [==============================] - 1s 3ms/step - loss: 1.6450 - accuracy: 0.4964
-client_model, accuracy: 49.64%
-313/313 [==============================] - 1s 3ms/step - loss: 1.8899 - accuracy: 0.4459
-client_model, accuracy: 44.59%
-313/313 [==============================] - 1s 3ms/step - loss: 1.8047 - accuracy: 0.4759
-client_model, accuracy: 47.59%
-313/313 [==============================] - 1s 3ms/step - loss: 1.6043 - accuracy: 0.4967
-client_model, accuracy: 49.67%
-313/313 [==============================] - 1s 3ms/step - loss: 1.3999 - sparse_categorical_accuracy: 0.5515
-Model, accuracy: 55.15%
-INFO flower 2022-04-05 17:08:43,906 | server.py:164 | fit progress: (1, 1.3998637199401855, {'accuracy': 0.5515000224113464}, 127.768713631)
-INFO flower 2022-04-05 17:08:43,906 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:08:43,906 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:09:07,455 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 2 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 1.9385 - accuracy: 0.4417
-client_model, accuracy: 44.17%
-313/313 [==============================] - 1s 3ms/step - loss: 1.7555 - accuracy: 0.4812
-client_model, accuracy: 48.12%
-313/313 [==============================] - 1s 3ms/step - loss: 2.0177 - accuracy: 0.4166
-client_model, accuracy: 41.66%
-313/313 [==============================] - 1s 3ms/step - loss: 2.0295 - accuracy: 0.4707
-client_model, accuracy: 47.07%
-313/313 [==============================] - 1s 3ms/step - loss: 1.7641 - accuracy: 0.4663
-client_model, accuracy: 46.63%
-313/313 [==============================] - 1s 3ms/step - loss: 2.2919 - accuracy: 0.4529
-client_model, accuracy: 45.29%
-313/313 [==============================] - 1s 3ms/step - loss: 1.6622 - accuracy: 0.4912
-client_model, accuracy: 49.12%
-313/313 [==============================] - 1s 3ms/step - loss: 1.6747 - accuracy: 0.4944
-client_model, accuracy: 49.44%
-313/313 [==============================] - 1s 3ms/step - loss: 2.0145 - accuracy: 0.4620
-client_model, accuracy: 46.20%
-313/313 [==============================] - 1s 3ms/step - loss: 1.8779 - accuracy: 0.4635
-client_model, accuracy: 46.35%
-313/313 [==============================] - 1s 3ms/step - loss: 1.4313 - sparse_categorical_accuracy: 0.5419
-Model, accuracy: 54.19%
-INFO flower 2022-04-05 17:09:21,439 | server.py:164 | fit progress: (2, 1.4312536716461182, {'accuracy': 0.5418999791145325}, 165.30183452400001)
-INFO flower 2022-04-05 17:09:21,439 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:09:21,439 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:09:43,778 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 3 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 2.0096 - accuracy: 0.4389
-client_model, accuracy: 43.89%
-313/313 [==============================] - 1s 3ms/step - loss: 2.4143 - accuracy: 0.3874
-client_model, accuracy: 38.74%
-313/313 [==============================] - 1s 3ms/step - loss: 2.4902 - accuracy: 0.4127
-client_model, accuracy: 41.27%
-313/313 [==============================] - 1s 3ms/step - loss: 2.2544 - accuracy: 0.4435
-client_model, accuracy: 44.35%
-313/313 [==============================] - 1s 3ms/step - loss: 2.0626 - accuracy: 0.4041
-client_model, accuracy: 40.41%
-313/313 [==============================] - 1s 3ms/step - loss: 2.1780 - accuracy: 0.4201
-client_model, accuracy: 42.01%
-313/313 [==============================] - 1s 3ms/step - loss: 1.9337 - accuracy: 0.4032
-client_model, accuracy: 40.32%
-313/313 [==============================] - 1s 3ms/step - loss: 1.9637 - accuracy: 0.4717
-client_model, accuracy: 47.17%
-313/313 [==============================] - 1s 3ms/step - loss: 2.0677 - accuracy: 0.4323
-client_model, accuracy: 43.23%
-313/313 [==============================] - 1s 3ms/step - loss: 1.9945 - accuracy: 0.4569
-client_model, accuracy: 45.69%
-313/313 [==============================] - 1s 3ms/step - loss: 1.4495 - sparse_categorical_accuracy: 0.5111
-Model, accuracy: 51.11%
-INFO flower 2022-04-05 17:09:57,920 | server.py:164 | fit progress: (3, 1.4494757652282715, {'accuracy': 0.5110999941825867}, 201.783228535)
-INFO flower 2022-04-05 17:09:57,921 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:09:57,921 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:10:19,844 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 4 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 2.5428 - accuracy: 0.3757
-client_model, accuracy: 37.57%
-313/313 [==============================] - 1s 3ms/step - loss: 2.0155 - accuracy: 0.4076
-client_model, accuracy: 40.76%
-313/313 [==============================] - 1s 3ms/step - loss: 2.2704 - accuracy: 0.3643
-client_model, accuracy: 36.43%
-313/313 [==============================] - 1s 3ms/step - loss: 2.1590 - accuracy: 0.3835
-client_model, accuracy: 38.35%
-313/313 [==============================] - 1s 3ms/step - loss: 2.5921 - accuracy: 0.3725
-client_model, accuracy: 37.25%
-313/313 [==============================] - 1s 3ms/step - loss: 1.9436 - accuracy: 0.3648
-client_model, accuracy: 36.48%
-313/313 [==============================] - 1s 3ms/step - loss: 2.0312 - accuracy: 0.4174
-client_model, accuracy: 41.74%
-313/313 [==============================] - 1s 3ms/step - loss: 1.8681 - accuracy: 0.4184
-client_model, accuracy: 41.84%
-313/313 [==============================] - 1s 3ms/step - loss: 2.3479 - accuracy: 0.3546
-client_model, accuracy: 35.46%
-313/313 [==============================] - 1s 3ms/step - loss: 1.9295 - accuracy: 0.4029
-client_model, accuracy: 40.29%
-313/313 [==============================] - 1s 3ms/step - loss: 1.4985 - sparse_categorical_accuracy: 0.4844
-Model, accuracy: 48.44%
-INFO flower 2022-04-05 17:10:33,599 | server.py:164 | fit progress: (4, 1.4985305070877075, {'accuracy': 0.4844000041484833}, 237.461746514)
-INFO flower 2022-04-05 17:10:33,599 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:10:33,599 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:10:56,420 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 5 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 2.2166 - accuracy: 0.4006
-client_model, accuracy: 40.06%
-313/313 [==============================] - 1s 3ms/step - loss: 1.9281 - accuracy: 0.3838
-client_model, accuracy: 38.38%
-313/313 [==============================] - 1s 3ms/step - loss: 1.7453 - accuracy: 0.4109
-client_model, accuracy: 41.09%
-313/313 [==============================] - 1s 3ms/step - loss: 2.3913 - accuracy: 0.3037
-client_model, accuracy: 30.37%
-313/313 [==============================] - 1s 3ms/step - loss: 2.2956 - accuracy: 0.4240
-client_model, accuracy: 42.40%
-313/313 [==============================] - 1s 3ms/step - loss: 2.4693 - accuracy: 0.3900
-client_model, accuracy: 39.00%
-313/313 [==============================] - 1s 3ms/step - loss: 2.1733 - accuracy: 0.3813
-client_model, accuracy: 38.13%
-313/313 [==============================] - 1s 3ms/step - loss: 1.9641 - accuracy: 0.3757
-client_model, accuracy: 37.57%
-313/313 [==============================] - 1s 3ms/step - loss: 1.9644 - accuracy: 0.4378
-client_model, accuracy: 43.78%
-313/313 [==============================] - 1s 3ms/step - loss: 2.0981 - accuracy: 0.4079
-client_model, accuracy: 40.79%
-313/313 [==============================] - 1s 3ms/step - loss: 1.5392 - sparse_categorical_accuracy: 0.4653
-Model, accuracy: 46.53%
-INFO flower 2022-04-05 17:11:10,461 | server.py:164 | fit progress: (5, 1.5392181873321533, {'accuracy': 0.4652999937534332}, 274.324143171)
-INFO flower 2022-04-05 17:11:10,462 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:11:10,462 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:11:33,514 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 6 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 2.6995 - accuracy: 0.3865
-client_model, accuracy: 38.65%
-313/313 [==============================] - 1s 3ms/step - loss: 2.2090 - accuracy: 0.4131
-client_model, accuracy: 41.31%
-313/313 [==============================] - 1s 3ms/step - loss: 2.6275 - accuracy: 0.3121
-client_model, accuracy: 31.21%
-313/313 [==============================] - 1s 3ms/step - loss: 2.3805 - accuracy: 0.3428
-client_model, accuracy: 34.28%
-313/313 [==============================] - 1s 3ms/step - loss: 2.4842 - accuracy: 0.3488
-client_model, accuracy: 34.88%
-313/313 [==============================] - 1s 3ms/step - loss: 1.8503 - accuracy: 0.4137
-client_model, accuracy: 41.37%
-313/313 [==============================] - 1s 3ms/step - loss: 2.2454 - accuracy: 0.3680
-client_model, accuracy: 36.80%
-313/313 [==============================] - 1s 3ms/step - loss: 1.8943 - accuracy: 0.4079
-client_model, accuracy: 40.79%
-313/313 [==============================] - 1s 3ms/step - loss: 2.1379 - accuracy: 0.3643
-client_model, accuracy: 36.43%
-313/313 [==============================] - 1s 3ms/step - loss: 2.2230 - accuracy: 0.3836
-client_model, accuracy: 38.36%
-313/313 [==============================] - 1s 3ms/step - loss: 1.6452 - sparse_categorical_accuracy: 0.4360
-Model, accuracy: 43.60%
-INFO flower 2022-04-05 17:11:47,667 | server.py:164 | fit progress: (6, 1.6451796293258667, {'accuracy': 0.4359999895095825}, 311.529748946)
-INFO flower 2022-04-05 17:11:47,667 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:11:47,667 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:12:10,440 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 7 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 2.4897 - accuracy: 0.3136
-client_model, accuracy: 31.36%
-313/313 [==============================] - 1s 3ms/step - loss: 1.9885 - accuracy: 0.3844
-client_model, accuracy: 38.44%
-313/313 [==============================] - 1s 3ms/step - loss: 2.3262 - accuracy: 0.3654
-client_model, accuracy: 36.54%
-313/313 [==============================] - 1s 3ms/step - loss: 2.3453 - accuracy: 0.3597
-client_model, accuracy: 35.97%
-313/313 [==============================] - 1s 3ms/step - loss: 2.3113 - accuracy: 0.3638
-client_model, accuracy: 36.38%
-313/313 [==============================] - 1s 3ms/step - loss: 2.1397 - accuracy: 0.4254
-client_model, accuracy: 42.54%
-313/313 [==============================] - 1s 3ms/step - loss: 2.4577 - accuracy: 0.3420
-client_model, accuracy: 34.20%
-313/313 [==============================] - 1s 3ms/step - loss: 2.3175 - accuracy: 0.3410
-client_model, accuracy: 34.10%
-313/313 [==============================] - 1s 3ms/step - loss: 2.5557 - accuracy: 0.3262
-client_model, accuracy: 32.62%
-313/313 [==============================] - 1s 3ms/step - loss: 2.3736 - accuracy: 0.3938
-client_model, accuracy: 39.38%
-313/313 [==============================] - 1s 3ms/step - loss: 1.5951 - sparse_categorical_accuracy: 0.4620
-Model, accuracy: 46.20%
-INFO flower 2022-04-05 17:12:24,197 | server.py:164 | fit progress: (7, 1.5950826406478882, {'accuracy': 0.4620000123977661}, 348.059275103)
-INFO flower 2022-04-05 17:12:24,197 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:12:24,197 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:12:47,203 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 8 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 2.8586 - accuracy: 0.3219
-client_model, accuracy: 32.19%
-313/313 [==============================] - 1s 3ms/step - loss: 2.3126 - accuracy: 0.3264
-client_model, accuracy: 32.64%
-313/313 [==============================] - 1s 3ms/step - loss: 2.3291 - accuracy: 0.3636
-client_model, accuracy: 36.36%
-313/313 [==============================] - 1s 3ms/step - loss: 2.9113 - accuracy: 0.3756
-client_model, accuracy: 37.56%
-313/313 [==============================] - 1s 3ms/step - loss: 2.2007 - accuracy: 0.3908
-client_model, accuracy: 39.08%
-313/313 [==============================] - 1s 3ms/step - loss: 2.3589 - accuracy: 0.3885
-client_model, accuracy: 38.85%
-313/313 [==============================] - 1s 3ms/step - loss: 3.3614 - accuracy: 0.2785
-client_model, accuracy: 27.85%
-313/313 [==============================] - 1s 3ms/step - loss: 2.7291 - accuracy: 0.3950
-client_model, accuracy: 39.50%
-313/313 [==============================] - 1s 3ms/step - loss: 3.0294 - accuracy: 0.3961
-client_model, accuracy: 39.61%
-313/313 [==============================] - 1s 3ms/step - loss: 3.1542 - accuracy: 0.3116
-client_model, accuracy: 31.16%
-313/313 [==============================] - 1s 3ms/step - loss: 1.9923 - sparse_categorical_accuracy: 0.4095
-Model, accuracy: 40.95%
-INFO flower 2022-04-05 17:13:01,312 | server.py:164 | fit progress: (8, 1.9923300743103027, {'accuracy': 0.40950000286102295}, 385.174018824)
-INFO flower 2022-04-05 17:13:01,312 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:13:01,312 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:13:24,244 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 9 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 2.0141 - accuracy: 0.4100
-client_model, accuracy: 41.00%
-313/313 [==============================] - 1s 3ms/step - loss: 1.9636 - accuracy: 0.4197
-client_model, accuracy: 41.97%
-313/313 [==============================] - 1s 3ms/step - loss: 2.2905 - accuracy: 0.4092
-client_model, accuracy: 40.92%
-313/313 [==============================] - 1s 3ms/step - loss: 2.5017 - accuracy: 0.3389
-client_model, accuracy: 33.89%
-313/313 [==============================] - 1s 3ms/step - loss: 2.7695 - accuracy: 0.3811
-client_model, accuracy: 38.11%
-313/313 [==============================] - 1s 3ms/step - loss: 3.2759 - accuracy: 0.3345
-client_model, accuracy: 33.45%
-313/313 [==============================] - 1s 3ms/step - loss: 3.4549 - accuracy: 0.3701
-client_model, accuracy: 37.01%
-313/313 [==============================] - 1s 3ms/step - loss: 2.2141 - accuracy: 0.3979
-client_model, accuracy: 39.79%
-313/313 [==============================] - 1s 3ms/step - loss: 2.0630 - accuracy: 0.4014
-client_model, accuracy: 40.14%
-313/313 [==============================] - 1s 3ms/step - loss: 2.7338 - accuracy: 0.3856
-client_model, accuracy: 38.56%
-313/313 [==============================] - 1s 3ms/step - loss: 1.9146 - sparse_categorical_accuracy: 0.4244
-Model, accuracy: 42.44%
-INFO flower 2022-04-05 17:13:38,079 | server.py:164 | fit progress: (9, 1.9146407842636108, {'accuracy': 0.4244000017642975}, 421.94155586)
-INFO flower 2022-04-05 17:13:38,079 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:13:38,079 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:14:01,644 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 10 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 3.0965 - accuracy: 0.3891
-client_model, accuracy: 38.91%
-313/313 [==============================] - 1s 3ms/step - loss: 2.3161 - accuracy: 0.4279
-client_model, accuracy: 42.79%
-313/313 [==============================] - 1s 3ms/step - loss: 3.0959 - accuracy: 0.3309
-client_model, accuracy: 33.09%
-313/313 [==============================] - 1s 3ms/step - loss: 2.3623 - accuracy: 0.3763
-client_model, accuracy: 37.63%
-313/313 [==============================] - 1s 3ms/step - loss: 2.7041 - accuracy: 0.3989
-client_model, accuracy: 39.89%
-313/313 [==============================] - 1s 3ms/step - loss: 3.1264 - accuracy: 0.3618
-client_model, accuracy: 36.18%
-313/313 [==============================] - 1s 3ms/step - loss: 2.7976 - accuracy: 0.3334
-client_model, accuracy: 33.34%
-313/313 [==============================] - 1s 3ms/step - loss: 3.0916 - accuracy: 0.3282
-client_model, accuracy: 32.82%
-313/313 [==============================] - 1s 3ms/step - loss: 2.3992 - accuracy: 0.4083
-client_model, accuracy: 40.83%
-313/313 [==============================] - 1s 3ms/step - loss: 2.5686 - accuracy: 0.4019
-client_model, accuracy: 40.19%
-313/313 [==============================] - 1s 3ms/step - loss: 2.1105 - sparse_categorical_accuracy: 0.3973
-Model, accuracy: 39.73%
-INFO flower 2022-04-05 17:14:15,751 | server.py:164 | fit progress: (10, 2.110515832901001, {'accuracy': 0.39730000495910645}, 459.612917281)
-INFO flower 2022-04-05 17:14:15,751 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:14:15,751 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:14:38,900 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 11 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 2.1804 - accuracy: 0.3594
-client_model, accuracy: 35.94%
-313/313 [==============================] - 1s 3ms/step - loss: 2.3767 - accuracy: 0.4107
-client_model, accuracy: 41.07%
-313/313 [==============================] - 1s 3ms/step - loss: 2.5609 - accuracy: 0.4042
-client_model, accuracy: 40.42%
-313/313 [==============================] - 1s 3ms/step - loss: 3.3603 - accuracy: 0.3543
-client_model, accuracy: 35.43%
-313/313 [==============================] - 1s 3ms/step - loss: 4.3963 - accuracy: 0.3335
-client_model, accuracy: 33.35%
-313/313 [==============================] - 1s 3ms/step - loss: 2.6146 - accuracy: 0.3788
-client_model, accuracy: 37.88%
-313/313 [==============================] - 1s 3ms/step - loss: 2.4898 - accuracy: 0.3768
-client_model, accuracy: 37.68%
-313/313 [==============================] - 1s 3ms/step - loss: 2.8082 - accuracy: 0.4132
-client_model, accuracy: 41.32%
-313/313 [==============================] - 1s 3ms/step - loss: 3.9204 - accuracy: 0.3113
-client_model, accuracy: 31.13%
-313/313 [==============================] - 1s 3ms/step - loss: 2.1603 - accuracy: 0.3966
-client_model, accuracy: 39.66%
-313/313 [==============================] - 1s 3ms/step - loss: 1.9055 - sparse_categorical_accuracy: 0.4287
-Model, accuracy: 42.87%
-INFO flower 2022-04-05 17:14:53,008 | server.py:164 | fit progress: (11, 1.9054962396621704, {'accuracy': 0.4287000000476837}, 496.87016809)
-INFO flower 2022-04-05 17:14:53,008 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:14:53,008 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:15:16,068 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 12 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 2.9097 - accuracy: 0.3079
-client_model, accuracy: 30.79%
-313/313 [==============================] - 1s 3ms/step - loss: 3.3400 - accuracy: 0.3157
-client_model, accuracy: 31.57%
-313/313 [==============================] - 1s 3ms/step - loss: 2.5817 - accuracy: 0.3782
-client_model, accuracy: 37.82%
-313/313 [==============================] - 1s 3ms/step - loss: 3.4757 - accuracy: 0.3121
-client_model, accuracy: 31.21%
-313/313 [==============================] - 1s 3ms/step - loss: 3.8480 - accuracy: 0.2934
-client_model, accuracy: 29.34%
-313/313 [==============================] - 1s 3ms/step - loss: 5.2597 - accuracy: 0.2396
-client_model, accuracy: 23.96%
-313/313 [==============================] - 1s 3ms/step - loss: 2.9946 - accuracy: 0.2952
-client_model, accuracy: 29.52%
-313/313 [==============================] - 1s 3ms/step - loss: 4.3545 - accuracy: 0.2969
-client_model, accuracy: 29.69%
-313/313 [==============================] - 1s 3ms/step - loss: 3.2253 - accuracy: 0.3118
-client_model, accuracy: 31.18%
-313/313 [==============================] - 1s 3ms/step - loss: 3.4896 - accuracy: 0.3955
-client_model, accuracy: 39.55%
-313/313 [==============================] - 1s 3ms/step - loss: 2.6765 - sparse_categorical_accuracy: 0.3511
-Model, accuracy: 35.11%
-INFO flower 2022-04-05 17:15:29,886 | server.py:164 | fit progress: (12, 2.676541328430176, {'accuracy': 0.35109999775886536}, 533.748502679)
-INFO flower 2022-04-05 17:15:29,886 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:15:29,887 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:15:52,004 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 13 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 3.7181 - accuracy: 0.3552
-client_model, accuracy: 35.52%
-313/313 [==============================] - 1s 3ms/step - loss: 3.3959 - accuracy: 0.3496
-client_model, accuracy: 34.96%
-313/313 [==============================] - 1s 3ms/step - loss: 3.0750 - accuracy: 0.3459
-client_model, accuracy: 34.59%
-313/313 [==============================] - 1s 3ms/step - loss: 4.2948 - accuracy: 0.3294
-client_model, accuracy: 32.94%
-313/313 [==============================] - 1s 3ms/step - loss: 3.8350 - accuracy: 0.3272
-client_model, accuracy: 32.72%
-313/313 [==============================] - 1s 3ms/step - loss: 5.2425 - accuracy: 0.2625
-client_model, accuracy: 26.25%
-313/313 [==============================] - 1s 3ms/step - loss: 2.8899 - accuracy: 0.3529
-client_model, accuracy: 35.29%
-313/313 [==============================] - 1s 3ms/step - loss: 4.3850 - accuracy: 0.3244
-client_model, accuracy: 32.44%
-313/313 [==============================] - 1s 3ms/step - loss: 4.1200 - accuracy: 0.3227
-client_model, accuracy: 32.27%
-313/313 [==============================] - 1s 3ms/step - loss: 4.8706 - accuracy: 0.2760
-client_model, accuracy: 27.60%
-313/313 [==============================] - 1s 3ms/step - loss: 2.7249 - sparse_categorical_accuracy: 0.3767
-Model, accuracy: 37.67%
-INFO flower 2022-04-05 17:16:06,166 | server.py:164 | fit progress: (13, 2.7248964309692383, {'accuracy': 0.3767000138759613}, 570.027860358)
-INFO flower 2022-04-05 17:16:06,166 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:16:06,166 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:16:28,951 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 14 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 3.1367 - accuracy: 0.3467
-client_model, accuracy: 34.67%
-313/313 [==============================] - 1s 3ms/step - loss: 3.6097 - accuracy: 0.3252
-client_model, accuracy: 32.52%
-313/313 [==============================] - 1s 3ms/step - loss: 2.5600 - accuracy: 0.4191
-client_model, accuracy: 41.91%
-313/313 [==============================] - 1s 3ms/step - loss: 3.8243 - accuracy: 0.3321
-client_model, accuracy: 33.21%
-313/313 [==============================] - 1s 3ms/step - loss: 4.2848 - accuracy: 0.2691
-client_model, accuracy: 26.91%
-313/313 [==============================] - 1s 3ms/step - loss: 3.7603 - accuracy: 0.3637
-client_model, accuracy: 36.37%
-313/313 [==============================] - 1s 3ms/step - loss: 4.7855 - accuracy: 0.3254
-client_model, accuracy: 32.54%
-313/313 [==============================] - 1s 3ms/step - loss: 4.3518 - accuracy: 0.3106
-client_model, accuracy: 31.06%
-313/313 [==============================] - 1s 3ms/step - loss: 3.1005 - accuracy: 0.3767
-client_model, accuracy: 37.67%
-313/313 [==============================] - 1s 3ms/step - loss: 3.9368 - accuracy: 0.2868
-client_model, accuracy: 28.68%
-313/313 [==============================] - 1s 3ms/step - loss: 2.7403 - sparse_categorical_accuracy: 0.3891
-Model, accuracy: 38.91%
-INFO flower 2022-04-05 17:16:43,158 | server.py:164 | fit progress: (14, 2.740299940109253, {'accuracy': 0.38909998536109924}, 607.0201658829999)
-INFO flower 2022-04-05 17:16:43,158 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:16:43,158 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:17:05,545 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 15 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 3.9881 - accuracy: 0.3896
-client_model, accuracy: 38.96%
-313/313 [==============================] - 1s 3ms/step - loss: 3.5194 - accuracy: 0.3950
-client_model, accuracy: 39.50%
-313/313 [==============================] - 1s 3ms/step - loss: 3.1924 - accuracy: 0.3764
-client_model, accuracy: 37.64%
-313/313 [==============================] - 1s 3ms/step - loss: 5.0869 - accuracy: 0.3099
-client_model, accuracy: 30.99%
-313/313 [==============================] - 1s 3ms/step - loss: 3.7400 - accuracy: 0.3676
-client_model, accuracy: 36.76%
-313/313 [==============================] - 1s 3ms/step - loss: 4.6756 - accuracy: 0.3001
-client_model, accuracy: 30.01%
-313/313 [==============================] - 1s 3ms/step - loss: 4.2724 - accuracy: 0.3389
-client_model, accuracy: 33.89%
-313/313 [==============================] - 1s 3ms/step - loss: 4.5822 - accuracy: 0.2899
-client_model, accuracy: 28.99%
-313/313 [==============================] - 1s 3ms/step - loss: 4.5115 - accuracy: 0.3238
-client_model, accuracy: 32.38%
-313/313 [==============================] - 1s 3ms/step - loss: 6.1067 - accuracy: 0.2498
-client_model, accuracy: 24.98%
-313/313 [==============================] - 1s 3ms/step - loss: 2.9660 - sparse_categorical_accuracy: 0.4013
-Model, accuracy: 40.13%
-INFO flower 2022-04-05 17:17:19,266 | server.py:164 | fit progress: (15, 2.9659764766693115, {'accuracy': 0.40130001306533813}, 643.128385109)
-INFO flower 2022-04-05 17:17:19,267 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:17:19,267 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:17:41,858 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 16 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 3.5631 - accuracy: 0.3714
-client_model, accuracy: 37.14%
-313/313 [==============================] - 1s 3ms/step - loss: 3.9966 - accuracy: 0.3680
-client_model, accuracy: 36.80%
-313/313 [==============================] - 1s 3ms/step - loss: 3.9044 - accuracy: 0.3161
-client_model, accuracy: 31.61%
-313/313 [==============================] - 1s 3ms/step - loss: 3.7117 - accuracy: 0.3592
-client_model, accuracy: 35.92%
-313/313 [==============================] - 1s 3ms/step - loss: 4.8705 - accuracy: 0.3305
-client_model, accuracy: 33.05%
-313/313 [==============================] - 1s 3ms/step - loss: 6.1214 - accuracy: 0.3028
-client_model, accuracy: 30.28%
-313/313 [==============================] - 1s 3ms/step - loss: 4.7636 - accuracy: 0.3097
-client_model, accuracy: 30.97%
-313/313 [==============================] - 1s 3ms/step - loss: 4.2997 - accuracy: 0.3318
-client_model, accuracy: 33.18%
-313/313 [==============================] - 1s 3ms/step - loss: 4.2186 - accuracy: 0.3557
-client_model, accuracy: 35.57%
-313/313 [==============================] - 1s 3ms/step - loss: 3.4412 - accuracy: 0.3519
-client_model, accuracy: 35.19%
-313/313 [==============================] - 1s 3ms/step - loss: 3.1042 - sparse_categorical_accuracy: 0.3888
-Model, accuracy: 38.88%
-INFO flower 2022-04-05 17:17:55,930 | server.py:164 | fit progress: (16, 3.1042120456695557, {'accuracy': 0.3887999951839447}, 679.7921817020001)
-INFO flower 2022-04-05 17:17:55,930 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:17:55,931 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:18:17,838 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 17 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 5.0254 - accuracy: 0.3336
-client_model, accuracy: 33.36%
-313/313 [==============================] - 1s 3ms/step - loss: 3.4117 - accuracy: 0.3662
-client_model, accuracy: 36.62%
-313/313 [==============================] - 1s 3ms/step - loss: 4.1055 - accuracy: 0.3389
-client_model, accuracy: 33.89%
-313/313 [==============================] - 1s 3ms/step - loss: 4.4828 - accuracy: 0.3112
-client_model, accuracy: 31.12%
-313/313 [==============================] - 1s 3ms/step - loss: 3.5894 - accuracy: 0.3214
-client_model, accuracy: 32.14%
-313/313 [==============================] - 1s 3ms/step - loss: 3.4920 - accuracy: 0.3391
-client_model, accuracy: 33.91%
-313/313 [==============================] - 1s 3ms/step - loss: 3.6869 - accuracy: 0.3542
-client_model, accuracy: 35.42%
-313/313 [==============================] - 1s 3ms/step - loss: 3.6940 - accuracy: 0.3521
-client_model, accuracy: 35.21%
-313/313 [==============================] - 1s 3ms/step - loss: 3.6997 - accuracy: 0.2804
-client_model, accuracy: 28.04%
-313/313 [==============================] - 1s 3ms/step - loss: 5.0538 - accuracy: 0.3224
-client_model, accuracy: 32.24%
-313/313 [==============================] - 1s 3ms/step - loss: 2.1365 - sparse_categorical_accuracy: 0.4432
-Model, accuracy: 44.32%
-INFO flower 2022-04-05 17:18:32,027 | server.py:164 | fit progress: (17, 2.1364924907684326, {'accuracy': 0.4431999921798706}, 715.888404266)
-INFO flower 2022-04-05 17:18:32,027 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:18:32,027 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:18:56,235 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 18 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 6.0555 - accuracy: 0.3005
-client_model, accuracy: 30.05%
-313/313 [==============================] - 1s 3ms/step - loss: 3.1641 - accuracy: 0.3799
-client_model, accuracy: 37.99%
-313/313 [==============================] - 1s 3ms/step - loss: 6.6411 - accuracy: 0.3033
-client_model, accuracy: 30.33%
-313/313 [==============================] - 1s 3ms/step - loss: 3.2094 - accuracy: 0.3888
-client_model, accuracy: 38.88%
-313/313 [==============================] - 1s 3ms/step - loss: 4.9330 - accuracy: 0.2972
-client_model, accuracy: 29.72%
-313/313 [==============================] - 1s 3ms/step - loss: 3.7872 - accuracy: 0.3026
-client_model, accuracy: 30.26%
-313/313 [==============================] - 1s 3ms/step - loss: 5.0980 - accuracy: 0.3038
-client_model, accuracy: 30.38%
-313/313 [==============================] - 1s 3ms/step - loss: 7.5154 - accuracy: 0.2303
-client_model, accuracy: 23.03%
-313/313 [==============================] - 1s 3ms/step - loss: 4.0397 - accuracy: 0.3102
-client_model, accuracy: 31.02%
-313/313 [==============================] - 1s 3ms/step - loss: 4.8356 - accuracy: 0.3598
-client_model, accuracy: 35.98%
-313/313 [==============================] - 1s 3ms/step - loss: 2.3173 - sparse_categorical_accuracy: 0.4584
-Model, accuracy: 45.84%
-INFO flower 2022-04-05 17:19:10,385 | server.py:164 | fit progress: (18, 2.317279577255249, {'accuracy': 0.45840001106262207}, 754.2469738110001)
-INFO flower 2022-04-05 17:19:10,385 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:19:10,385 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:19:32,615 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 19 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 9.7510 - accuracy: 0.2005
-client_model, accuracy: 20.05%
-313/313 [==============================] - 1s 3ms/step - loss: 4.6800 - accuracy: 0.3114
-client_model, accuracy: 31.14%
-313/313 [==============================] - 1s 3ms/step - loss: 3.4862 - accuracy: 0.3362
-client_model, accuracy: 33.62%
-313/313 [==============================] - 1s 3ms/step - loss: 3.7275 - accuracy: 0.3537
-client_model, accuracy: 35.37%
-313/313 [==============================] - 1s 3ms/step - loss: 4.1207 - accuracy: 0.3631
-client_model, accuracy: 36.31%
-313/313 [==============================] - 1s 3ms/step - loss: 3.6893 - accuracy: 0.3408
-client_model, accuracy: 34.08%
-313/313 [==============================] - 1s 3ms/step - loss: 4.3036 - accuracy: 0.3480
-client_model, accuracy: 34.80%
-313/313 [==============================] - 1s 3ms/step - loss: 3.7358 - accuracy: 0.3314
-client_model, accuracy: 33.14%
-313/313 [==============================] - 1s 3ms/step - loss: 3.6051 - accuracy: 0.3889
-client_model, accuracy: 38.89%
-313/313 [==============================] - 1s 3ms/step - loss: 2.5679 - accuracy: 0.3826
-client_model, accuracy: 38.26%
-313/313 [==============================] - 1s 3ms/step - loss: 2.4171 - sparse_categorical_accuracy: 0.4482
-Model, accuracy: 44.82%
-INFO flower 2022-04-05 17:19:46,827 | server.py:164 | fit progress: (19, 2.4170775413513184, {'accuracy': 0.448199987411499}, 790.6711734800001)
-INFO flower 2022-04-05 17:19:46,827 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:19:46,827 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:20:09,887 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 20 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 3.9892 - accuracy: 0.2781
-client_model, accuracy: 27.81%
-313/313 [==============================] - 1s 3ms/step - loss: 5.6829 - accuracy: 0.2788
-client_model, accuracy: 27.88%
-313/313 [==============================] - 1s 3ms/step - loss: 3.3973 - accuracy: 0.3396
-client_model, accuracy: 33.96%
-313/313 [==============================] - 1s 3ms/step - loss: 4.7709 - accuracy: 0.3393
-client_model, accuracy: 33.93%
-313/313 [==============================] - 1s 3ms/step - loss: 4.7178 - accuracy: 0.3327
-client_model, accuracy: 33.27%
-313/313 [==============================] - 1s 3ms/step - loss: 4.0550 - accuracy: 0.3528
-client_model, accuracy: 35.28%
-313/313 [==============================] - 1s 3ms/step - loss: 2.9592 - accuracy: 0.3419
-client_model, accuracy: 34.19%
-313/313 [==============================] - 1s 3ms/step - loss: 4.8060 - accuracy: 0.3207
-client_model, accuracy: 32.07%
-313/313 [==============================] - 1s 3ms/step - loss: 6.7955 - accuracy: 0.2432
-client_model, accuracy: 24.32%
-313/313 [==============================] - 1s 3ms/step - loss: 4.2983 - accuracy: 0.2257
-client_model, accuracy: 22.57%
-313/313 [==============================] - 1s 3ms/step - loss: 2.2207 - sparse_categorical_accuracy: 0.4456
-Model, accuracy: 44.56%
-INFO flower 2022-04-05 17:20:24,416 | server.py:164 | fit progress: (20, 2.220710039138794, {'accuracy': 0.4456000030040741}, 828.256063885)
-INFO flower 2022-04-05 17:20:24,416 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:20:24,416 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:20:47,516 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 21 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 4.0394 - accuracy: 0.3157
-client_model, accuracy: 31.57%
-313/313 [==============================] - 1s 3ms/step - loss: 3.0426 - accuracy: 0.3286
-client_model, accuracy: 32.86%
-313/313 [==============================] - 1s 3ms/step - loss: 3.7734 - accuracy: 0.3028
-client_model, accuracy: 30.28%
-313/313 [==============================] - 1s 3ms/step - loss: 4.0076 - accuracy: 0.2972
-client_model, accuracy: 29.72%
-313/313 [==============================] - 1s 3ms/step - loss: 3.8299 - accuracy: 0.3479
-client_model, accuracy: 34.79%
-313/313 [==============================] - 1s 3ms/step - loss: 6.8975 - accuracy: 0.2680
-client_model, accuracy: 26.80%
-313/313 [==============================] - 1s 3ms/step - loss: 3.8374 - accuracy: 0.2952
-client_model, accuracy: 29.52%
-313/313 [==============================] - 1s 3ms/step - loss: 3.2026 - accuracy: 0.3390
-client_model, accuracy: 33.90%
-313/313 [==============================] - 1s 3ms/step - loss: 3.6165 - accuracy: 0.2995
-client_model, accuracy: 29.95%
-313/313 [==============================] - 1s 3ms/step - loss: 3.2467 - accuracy: 0.3272
-client_model, accuracy: 32.72%
-313/313 [==============================] - 1s 3ms/step - loss: 2.0858 - sparse_categorical_accuracy: 0.4076
-Model, accuracy: 40.76%
-INFO flower 2022-04-05 17:21:01,286 | server.py:164 | fit progress: (21, 2.085793972015381, {'accuracy': 0.4075999855995178}, 865.1262719389999)
-INFO flower 2022-04-05 17:21:01,287 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:21:01,287 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:21:24,757 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 22 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 5.4237 - accuracy: 0.2813
-client_model, accuracy: 28.13%
-313/313 [==============================] - 1s 3ms/step - loss: 5.5913 - accuracy: 0.2315
-client_model, accuracy: 23.15%
-313/313 [==============================] - 1s 3ms/step - loss: 4.6779 - accuracy: 0.2427
-client_model, accuracy: 24.27%
-313/313 [==============================] - 1s 3ms/step - loss: 5.3321 - accuracy: 0.2761
-client_model, accuracy: 27.61%
-313/313 [==============================] - 1s 3ms/step - loss: 4.0135 - accuracy: 0.2439
-client_model, accuracy: 24.39%
-313/313 [==============================] - 1s 3ms/step - loss: 2.9586 - accuracy: 0.3318
-client_model, accuracy: 33.18%
-313/313 [==============================] - 1s 3ms/step - loss: 2.5818 - accuracy: 0.3382
-client_model, accuracy: 33.82%
-313/313 [==============================] - 1s 3ms/step - loss: 3.5527 - accuracy: 0.3408
-client_model, accuracy: 34.08%
-313/313 [==============================] - 1s 3ms/step - loss: 3.1515 - accuracy: 0.3447
-client_model, accuracy: 34.47%
-313/313 [==============================] - 1s 3ms/step - loss: 4.6556 - accuracy: 0.2847
-client_model, accuracy: 28.47%
-313/313 [==============================] - 1s 3ms/step - loss: 2.2193 - sparse_categorical_accuracy: 0.3859
-Model, accuracy: 38.59%
-INFO flower 2022-04-05 17:21:38,797 | server.py:164 | fit progress: (22, 2.2192766666412354, {'accuracy': 0.38589999079704285}, 902.636869614)
-INFO flower 2022-04-05 17:21:38,798 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:21:38,798 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:22:02,837 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 23 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 4.6122 - accuracy: 0.2493
-client_model, accuracy: 24.93%
-313/313 [==============================] - 1s 3ms/step - loss: 4.4254 - accuracy: 0.2539
-client_model, accuracy: 25.39%
-313/313 [==============================] - 1s 3ms/step - loss: 3.3537 - accuracy: 0.2629
-client_model, accuracy: 26.29%
-313/313 [==============================] - 1s 3ms/step - loss: 4.5028 - accuracy: 0.2741
-client_model, accuracy: 27.41%
-313/313 [==============================] - 1s 3ms/step - loss: 5.8065 - accuracy: 0.2025
-client_model, accuracy: 20.25%
-313/313 [==============================] - 1s 3ms/step - loss: 4.0107 - accuracy: 0.3173
-client_model, accuracy: 31.73%
-313/313 [==============================] - 1s 3ms/step - loss: 3.9918 - accuracy: 0.2859
-client_model, accuracy: 28.59%
-313/313 [==============================] - 1s 3ms/step - loss: 4.6814 - accuracy: 0.2400
-client_model, accuracy: 24.00%
-313/313 [==============================] - 1s 3ms/step - loss: 4.8234 - accuracy: 0.2503
-client_model, accuracy: 25.03%
-313/313 [==============================] - 1s 3ms/step - loss: 4.4936 - accuracy: 0.2657
-client_model, accuracy: 26.57%
-313/313 [==============================] - 1s 3ms/step - loss: 2.6285 - sparse_categorical_accuracy: 0.3197
-Model, accuracy: 31.97%
-INFO flower 2022-04-05 17:22:17,012 | server.py:164 | fit progress: (23, 2.6284983158111572, {'accuracy': 0.3197000026702881}, 940.851023041)
-INFO flower 2022-04-05 17:22:17,012 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:22:17,012 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:22:42,375 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 24 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 5.2164 - accuracy: 0.2068
-client_model, accuracy: 20.68%
-313/313 [==============================] - 1s 3ms/step - loss: 2.4590 - accuracy: 0.2939
-client_model, accuracy: 29.39%
-313/313 [==============================] - 1s 3ms/step - loss: 4.3141 - accuracy: 0.2037
-client_model, accuracy: 20.37%
-313/313 [==============================] - 1s 3ms/step - loss: 3.2270 - accuracy: 0.3158
-client_model, accuracy: 31.58%
-313/313 [==============================] - 1s 3ms/step - loss: 2.5280 - accuracy: 0.2617
-client_model, accuracy: 26.17%
-313/313 [==============================] - 1s 3ms/step - loss: 2.2840 - accuracy: 0.3207
-client_model, accuracy: 32.07%
-313/313 [==============================] - 1s 3ms/step - loss: 3.9522 - accuracy: 0.2078
-client_model, accuracy: 20.78%
-313/313 [==============================] - 1s 3ms/step - loss: 4.2364 - accuracy: 0.2708
-client_model, accuracy: 27.08%
-313/313 [==============================] - 1s 3ms/step - loss: 5.3162 - accuracy: 0.2539
-client_model, accuracy: 25.39%
-313/313 [==============================] - 1s 3ms/step - loss: 3.8248 - accuracy: 0.1887
-client_model, accuracy: 18.87%
-313/313 [==============================] - 1s 3ms/step - loss: 2.2754 - sparse_categorical_accuracy: 0.2878
-Model, accuracy: 28.78%
-INFO flower 2022-04-05 17:22:56,548 | server.py:164 | fit progress: (24, 2.275407314300537, {'accuracy': 0.28780001401901245}, 980.3862667860001)
-INFO flower 2022-04-05 17:22:56,548 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:22:56,548 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:23:20,609 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 25 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 3.7211 - accuracy: 0.2406
-client_model, accuracy: 24.06%
-313/313 [==============================] - 1s 3ms/step - loss: 4.8969 - accuracy: 0.2038
-client_model, accuracy: 20.38%
-313/313 [==============================] - 1s 3ms/step - loss: 2.9703 - accuracy: 0.2822
-client_model, accuracy: 28.22%
-313/313 [==============================] - 1s 3ms/step - loss: 3.5562 - accuracy: 0.2896
-client_model, accuracy: 28.96%
-313/313 [==============================] - 1s 3ms/step - loss: 2.7914 - accuracy: 0.3365
-client_model, accuracy: 33.65%
-313/313 [==============================] - 1s 3ms/step - loss: 3.7729 - accuracy: 0.2792
-client_model, accuracy: 27.92%
-313/313 [==============================] - 1s 3ms/step - loss: 2.8531 - accuracy: 0.2711
-client_model, accuracy: 27.11%
-313/313 [==============================] - 1s 3ms/step - loss: 3.9434 - accuracy: 0.2211
-client_model, accuracy: 22.11%
-313/313 [==============================] - 1s 3ms/step - loss: 2.8796 - accuracy: 0.2759
-client_model, accuracy: 27.59%
-313/313 [==============================] - 1s 3ms/step - loss: 2.8728 - accuracy: 0.3065
-client_model, accuracy: 30.65%
-313/313 [==============================] - 1s 3ms/step - loss: 1.9172 - sparse_categorical_accuracy: 0.3422
-Model, accuracy: 34.22%
-INFO flower 2022-04-05 17:23:34,610 | server.py:164 | fit progress: (25, 1.9172443151474, {'accuracy': 0.34220001101493835}, 1018.448056796)
-INFO flower 2022-04-05 17:23:34,610 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:23:34,610 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:23:57,474 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 26 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 3.4762 - accuracy: 0.2577
-client_model, accuracy: 25.77%
-313/313 [==============================] - 1s 3ms/step - loss: 4.7283 - accuracy: 0.2231
-client_model, accuracy: 22.31%
-313/313 [==============================] - 1s 3ms/step - loss: 2.9212 - accuracy: 0.2459
-client_model, accuracy: 24.59%
-313/313 [==============================] - 1s 3ms/step - loss: 2.9944 - accuracy: 0.2940
-client_model, accuracy: 29.40%
-313/313 [==============================] - 1s 3ms/step - loss: 2.5122 - accuracy: 0.3209
-client_model, accuracy: 32.09%
-313/313 [==============================] - 1s 3ms/step - loss: 2.6318 - accuracy: 0.3241
-client_model, accuracy: 32.41%
-313/313 [==============================] - 1s 3ms/step - loss: 3.3802 - accuracy: 0.2218
-client_model, accuracy: 22.18%
-313/313 [==============================] - 1s 3ms/step - loss: 2.5987 - accuracy: 0.3316
-client_model, accuracy: 33.16%
-313/313 [==============================] - 1s 3ms/step - loss: 4.9493 - accuracy: 0.2773
-client_model, accuracy: 27.73%
-313/313 [==============================] - 1s 3ms/step - loss: 3.9678 - accuracy: 0.2515
-client_model, accuracy: 25.15%
-313/313 [==============================] - 1s 3ms/step - loss: 2.0763 - sparse_categorical_accuracy: 0.3078
-Model, accuracy: 30.78%
-INFO flower 2022-04-05 17:24:12,035 | server.py:164 | fit progress: (26, 2.0762906074523926, {'accuracy': 0.3077999949455261}, 1055.872928439)
-INFO flower 2022-04-05 17:24:12,035 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:24:12,035 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:24:34,282 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 27 weights...
-313/313 [==============================] - 1s 4ms/step - loss: 4.1359 - accuracy: 0.2313
-client_model, accuracy: 23.13%
-313/313 [==============================] - 1s 3ms/step - loss: 2.2255 - accuracy: 0.3302
-client_model, accuracy: 33.02%
-313/313 [==============================] - 1s 3ms/step - loss: 2.9042 - accuracy: 0.2553
-client_model, accuracy: 25.53%
-313/313 [==============================] - 1s 3ms/step - loss: 2.6250 - accuracy: 0.3014
-client_model, accuracy: 30.14%
-313/313 [==============================] - 1s 3ms/step - loss: 3.0794 - accuracy: 0.2515
-client_model, accuracy: 25.15%
-313/313 [==============================] - 1s 3ms/step - loss: 2.9541 - accuracy: 0.2902
-client_model, accuracy: 29.02%
-313/313 [==============================] - 1s 3ms/step - loss: 3.7955 - accuracy: 0.2497
-client_model, accuracy: 24.97%
-313/313 [==============================] - 1s 3ms/step - loss: 3.1109 - accuracy: 0.2560
-client_model, accuracy: 25.60%
-313/313 [==============================] - 1s 3ms/step - loss: 2.9193 - accuracy: 0.2811
-client_model, accuracy: 28.11%
-313/313 [==============================] - 1s 3ms/step - loss: 2.5971 - accuracy: 0.2997
-client_model, accuracy: 29.97%
-313/313 [==============================] - 1s 3ms/step - loss: 1.9638 - sparse_categorical_accuracy: 0.3399
-Model, accuracy: 33.99%
-INFO flower 2022-04-05 17:24:49,643 | server.py:164 | fit progress: (27, 1.963837742805481, {'accuracy': 0.3398999869823456}, 1093.480782599)
-INFO flower 2022-04-05 17:24:49,643 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:24:49,643 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:25:11,949 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 28 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 2.7686 - accuracy: 0.2748
-client_model, accuracy: 27.48%
-313/313 [==============================] - 1s 3ms/step - loss: 2.9503 - accuracy: 0.2994
-client_model, accuracy: 29.94%
-313/313 [==============================] - 1s 3ms/step - loss: 2.8773 - accuracy: 0.2521
-client_model, accuracy: 25.21%
-313/313 [==============================] - 1s 3ms/step - loss: 4.7101 - accuracy: 0.2341
-client_model, accuracy: 23.41%
-313/313 [==============================] - 1s 3ms/step - loss: 2.7167 - accuracy: 0.2458
-client_model, accuracy: 24.58%
-313/313 [==============================] - 1s 3ms/step - loss: 3.6703 - accuracy: 0.2407
-client_model, accuracy: 24.07%
-313/313 [==============================] - 1s 3ms/step - loss: 3.3553 - accuracy: 0.2452
-client_model, accuracy: 24.52%
-313/313 [==============================] - 1s 3ms/step - loss: 2.9718 - accuracy: 0.2487
-client_model, accuracy: 24.87%
-313/313 [==============================] - 1s 3ms/step - loss: 2.2155 - accuracy: 0.3018
-client_model, accuracy: 30.18%
-313/313 [==============================] - 1s 3ms/step - loss: 2.9438 - accuracy: 0.2773
-client_model, accuracy: 27.73%
-313/313 [==============================] - 1s 3ms/step - loss: 2.0785 - sparse_categorical_accuracy: 0.3003
-Model, accuracy: 30.03%
-INFO flower 2022-04-05 17:25:26,468 | server.py:164 | fit progress: (28, 2.0785062313079834, {'accuracy': 0.3003000020980835}, 1130.30515128)
-INFO flower 2022-04-05 17:25:26,468 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:25:26,468 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:25:49,140 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 29 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 2.7967 - accuracy: 0.2804
-client_model, accuracy: 28.04%
-313/313 [==============================] - 1s 3ms/step - loss: 2.8874 - accuracy: 0.2603
-client_model, accuracy: 26.03%
-313/313 [==============================] - 1s 3ms/step - loss: 3.1911 - accuracy: 0.2550
-client_model, accuracy: 25.50%
-313/313 [==============================] - 1s 3ms/step - loss: 2.6411 - accuracy: 0.3017
-client_model, accuracy: 30.17%
-313/313 [==============================] - 1s 3ms/step - loss: 5.9566 - accuracy: 0.2345
-client_model, accuracy: 23.45%
-313/313 [==============================] - 1s 3ms/step - loss: 4.0188 - accuracy: 0.2445
-client_model, accuracy: 24.45%
-313/313 [==============================] - 1s 3ms/step - loss: 3.4977 - accuracy: 0.2711
-client_model, accuracy: 27.11%
-313/313 [==============================] - 1s 3ms/step - loss: 4.5255 - accuracy: 0.2154
-client_model, accuracy: 21.54%
-313/313 [==============================] - 1s 3ms/step - loss: 4.2507 - accuracy: 0.2159
-client_model, accuracy: 21.59%
-313/313 [==============================] - 1s 3ms/step - loss: 2.3036 - accuracy: 0.3336
-client_model, accuracy: 33.36%
-313/313 [==============================] - 1s 3ms/step - loss: 1.8875 - sparse_categorical_accuracy: 0.3463
-Model, accuracy: 34.63%
-INFO flower 2022-04-05 17:26:02,979 | server.py:164 | fit progress: (29, 1.8875242471694946, {'accuracy': 0.34630000591278076}, 1166.8161082039999)
-INFO flower 2022-04-05 17:26:02,979 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:26:02,979 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:26:25,271 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 30 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 3.3205 - accuracy: 0.2861
-client_model, accuracy: 28.61%
-313/313 [==============================] - 1s 3ms/step - loss: 2.8208 - accuracy: 0.1841
-client_model, accuracy: 18.41%
-313/313 [==============================] - 1s 3ms/step - loss: 2.9928 - accuracy: 0.2888
-client_model, accuracy: 28.88%
-313/313 [==============================] - 1s 3ms/step - loss: 2.5881 - accuracy: 0.3530
-client_model, accuracy: 35.30%
-313/313 [==============================] - 1s 3ms/step - loss: 5.2812 - accuracy: 0.1858
-client_model, accuracy: 18.58%
-313/313 [==============================] - 1s 3ms/step - loss: 2.6862 - accuracy: 0.2387
-client_model, accuracy: 23.87%
-313/313 [==============================] - 1s 3ms/step - loss: 4.1162 - accuracy: 0.2088
-client_model, accuracy: 20.88%
-313/313 [==============================] - 1s 3ms/step - loss: 3.2430 - accuracy: 0.2137
-client_model, accuracy: 21.37%
-313/313 [==============================] - 1s 3ms/step - loss: 3.5384 - accuracy: 0.2272
-client_model, accuracy: 22.72%
-313/313 [==============================] - 1s 3ms/step - loss: 3.0366 - accuracy: 0.3156
-client_model, accuracy: 31.56%
-313/313 [==============================] - 1s 3ms/step - loss: 2.0297 - sparse_categorical_accuracy: 0.2959
-Model, accuracy: 29.59%
-INFO flower 2022-04-05 17:26:39,383 | server.py:164 | fit progress: (30, 2.0297369956970215, {'accuracy': 0.29589998722076416}, 1203.2197159749999)
-INFO flower 2022-04-05 17:26:39,383 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:26:39,383 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:27:01,178 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 31 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 2.8824 - accuracy: 0.2709
-client_model, accuracy: 27.09%
-313/313 [==============================] - 1s 3ms/step - loss: 2.9933 - accuracy: 0.2724
-client_model, accuracy: 27.24%
-313/313 [==============================] - 1s 3ms/step - loss: 2.1190 - accuracy: 0.3067
-client_model, accuracy: 30.67%
-313/313 [==============================] - 1s 3ms/step - loss: 4.1822 - accuracy: 0.2272
-client_model, accuracy: 22.72%
-313/313 [==============================] - 1s 3ms/step - loss: 3.8888 - accuracy: 0.2157
-client_model, accuracy: 21.57%
-313/313 [==============================] - 1s 3ms/step - loss: 2.9070 - accuracy: 0.3099
-client_model, accuracy: 30.99%
-313/313 [==============================] - 1s 3ms/step - loss: 3.5248 - accuracy: 0.2463
-client_model, accuracy: 24.63%
-313/313 [==============================] - 1s 3ms/step - loss: 2.0951 - accuracy: 0.2800
-client_model, accuracy: 28.00%
-313/313 [==============================] - 1s 3ms/step - loss: 2.7187 - accuracy: 0.2839
-client_model, accuracy: 28.39%
-313/313 [==============================] - 1s 3ms/step - loss: 3.9263 - accuracy: 0.2733
-client_model, accuracy: 27.33%
-313/313 [==============================] - 1s 3ms/step - loss: 1.8432 - sparse_categorical_accuracy: 0.3802
-Model, accuracy: 38.02%
-INFO flower 2022-04-05 17:27:15,680 | server.py:164 | fit progress: (31, 1.843223214149475, {'accuracy': 0.38019999861717224}, 1239.516363759)
-INFO flower 2022-04-05 17:27:15,680 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:27:15,680 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:27:38,060 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 32 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 5.3773 - accuracy: 0.1956
-client_model, accuracy: 19.56%
-313/313 [==============================] - 1s 3ms/step - loss: 3.2193 - accuracy: 0.2718
-client_model, accuracy: 27.18%
-313/313 [==============================] - 1s 3ms/step - loss: 2.7581 - accuracy: 0.3252
-client_model, accuracy: 32.52%
-313/313 [==============================] - 1s 3ms/step - loss: 3.7878 - accuracy: 0.1993
-client_model, accuracy: 19.93%
-313/313 [==============================] - 1s 3ms/step - loss: 3.8517 - accuracy: 0.2391
-client_model, accuracy: 23.91%
-313/313 [==============================] - 1s 3ms/step - loss: 2.5316 - accuracy: 0.2785
-client_model, accuracy: 27.85%
-313/313 [==============================] - 1s 3ms/step - loss: 2.6315 - accuracy: 0.2611
-client_model, accuracy: 26.11%
-313/313 [==============================] - 1s 3ms/step - loss: 3.1453 - accuracy: 0.2645
-client_model, accuracy: 26.45%
-313/313 [==============================] - 1s 3ms/step - loss: 3.1680 - accuracy: 0.2875
-client_model, accuracy: 28.75%
-313/313 [==============================] - 1s 3ms/step - loss: 3.0448 - accuracy: 0.3045
-client_model, accuracy: 30.45%
-313/313 [==============================] - 1s 3ms/step - loss: 1.8565 - sparse_categorical_accuracy: 0.3605
-Model, accuracy: 36.05%
-INFO flower 2022-04-05 17:27:52,026 | server.py:164 | fit progress: (32, 1.8564738035202026, {'accuracy': 0.3605000078678131}, 1275.861860306)
-INFO flower 2022-04-05 17:27:52,026 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:27:52,026 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:28:13,979 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 33 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 5.8037 - accuracy: 0.1734
-client_model, accuracy: 17.34%
-313/313 [==============================] - 1s 3ms/step - loss: 2.4437 - accuracy: 0.2704
-client_model, accuracy: 27.04%
-313/313 [==============================] - 1s 3ms/step - loss: 3.0710 - accuracy: 0.3288
-client_model, accuracy: 32.88%
-313/313 [==============================] - 1s 3ms/step - loss: 5.4180 - accuracy: 0.2058
-client_model, accuracy: 20.58%
-313/313 [==============================] - 1s 3ms/step - loss: 2.9705 - accuracy: 0.2943
-client_model, accuracy: 29.43%
-313/313 [==============================] - 1s 3ms/step - loss: 2.8744 - accuracy: 0.2893
-client_model, accuracy: 28.93%
-313/313 [==============================] - 1s 3ms/step - loss: 5.0820 - accuracy: 0.2233
-client_model, accuracy: 22.33%
-313/313 [==============================] - 1s 3ms/step - loss: 2.4956 - accuracy: 0.2704
-client_model, accuracy: 27.04%
-313/313 [==============================] - 1s 3ms/step - loss: 2.4982 - accuracy: 0.3196
-client_model, accuracy: 31.96%
-313/313 [==============================] - 1s 3ms/step - loss: 4.0215 - accuracy: 0.1970
-client_model, accuracy: 19.70%
-313/313 [==============================] - 1s 3ms/step - loss: 2.3720 - sparse_categorical_accuracy: 0.2802
-Model, accuracy: 28.02%
-INFO flower 2022-04-05 17:28:28,124 | server.py:164 | fit progress: (33, 2.372030019760132, {'accuracy': 0.2802000045776367}, 1311.959232815)
-INFO flower 2022-04-05 17:28:28,124 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:28:28,124 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:28:50,888 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 34 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 5.0882 - accuracy: 0.2057
-client_model, accuracy: 20.57%
-313/313 [==============================] - 1s 3ms/step - loss: 4.2558 - accuracy: 0.1932
-client_model, accuracy: 19.32%
-313/313 [==============================] - 1s 3ms/step - loss: 3.1333 - accuracy: 0.2689
-client_model, accuracy: 26.89%
-313/313 [==============================] - 1s 3ms/step - loss: 5.1975 - accuracy: 0.1837
-client_model, accuracy: 18.37%
-313/313 [==============================] - 1s 3ms/step - loss: 2.8084 - accuracy: 0.3299
-client_model, accuracy: 32.99%
-313/313 [==============================] - 1s 3ms/step - loss: 2.3222 - accuracy: 0.2598
-client_model, accuracy: 25.98%
-313/313 [==============================] - 1s 3ms/step - loss: 5.5411 - accuracy: 0.1677
-client_model, accuracy: 16.77%
-313/313 [==============================] - 1s 3ms/step - loss: 2.5825 - accuracy: 0.2845
-client_model, accuracy: 28.45%
-313/313 [==============================] - 1s 3ms/step - loss: 2.8663 - accuracy: 0.2808
-client_model, accuracy: 28.08%
-313/313 [==============================] - 1s 3ms/step - loss: 3.2820 - accuracy: 0.2133
-client_model, accuracy: 21.33%
-313/313 [==============================] - 1s 3ms/step - loss: 2.7832 - sparse_categorical_accuracy: 0.2053
-Model, accuracy: 20.53%
-INFO flower 2022-04-05 17:29:05,333 | server.py:164 | fit progress: (34, 2.7831501960754395, {'accuracy': 0.2053000032901764}, 1349.168012701)
-INFO flower 2022-04-05 17:29:05,333 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:29:05,333 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:29:27,256 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 35 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 2.6994 - accuracy: 0.1949
-client_model, accuracy: 19.49%
-313/313 [==============================] - 1s 3ms/step - loss: 2.2005 - accuracy: 0.2263
-client_model, accuracy: 22.63%
-313/313 [==============================] - 1s 3ms/step - loss: 2.8671 - accuracy: 0.1660
-client_model, accuracy: 16.60%
-313/313 [==============================] - 1s 3ms/step - loss: 2.8205 - accuracy: 0.2142
-client_model, accuracy: 21.42%
-313/313 [==============================] - 1s 3ms/step - loss: 2.6352 - accuracy: 0.2600
-client_model, accuracy: 26.00%
-313/313 [==============================] - 1s 3ms/step - loss: 3.0451 - accuracy: 0.2165
-client_model, accuracy: 21.65%
-313/313 [==============================] - 1s 3ms/step - loss: 4.8264 - accuracy: 0.2236
-client_model, accuracy: 22.36%
-313/313 [==============================] - 1s 3ms/step - loss: 6.5091 - accuracy: 0.2023
-client_model, accuracy: 20.23%
-313/313 [==============================] - 1s 3ms/step - loss: 6.5021 - accuracy: 0.1715
-client_model, accuracy: 17.15%
-313/313 [==============================] - 1s 3ms/step - loss: 2.3312 - accuracy: 0.1002
-client_model, accuracy: 10.02%
-313/313 [==============================] - 1s 3ms/step - loss: 2.3084 - sparse_categorical_accuracy: 0.1392
-Model, accuracy: 13.92%
-INFO flower 2022-04-05 17:29:41,048 | server.py:164 | fit progress: (35, 2.3083505630493164, {'accuracy': 0.13920000195503235}, 1384.883144404)
-INFO flower 2022-04-05 17:29:41,048 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:29:41,049 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:30:02,708 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 36 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 2.1498 - accuracy: 0.2373
-client_model, accuracy: 23.73%
-313/313 [==============================] - 1s 3ms/step - loss: 2.8309 - accuracy: 0.2057
-client_model, accuracy: 20.57%
-313/313 [==============================] - 1s 3ms/step - loss: 2.1804 - accuracy: 0.2312
-client_model, accuracy: 23.12%
-313/313 [==============================] - 1s 3ms/step - loss: 2.6743 - accuracy: 0.1732
-client_model, accuracy: 17.32%
-313/313 [==============================] - 1s 3ms/step - loss: 2.1560 - accuracy: 0.2214
-client_model, accuracy: 22.14%
-313/313 [==============================] - 1s 3ms/step - loss: 2.3333 - accuracy: 0.2422
-client_model, accuracy: 24.22%
-313/313 [==============================] - 1s 3ms/step - loss: 2.5808 - accuracy: 0.2429
-client_model, accuracy: 24.29%
-313/313 [==============================] - 1s 3ms/step - loss: 3.2038 - accuracy: 0.1968
-client_model, accuracy: 19.68%
-313/313 [==============================] - 1s 3ms/step - loss: 2.2984 - accuracy: 0.2067
-client_model, accuracy: 20.67%
-313/313 [==============================] - 1s 3ms/step - loss: 2.5371 - accuracy: 0.2713
-client_model, accuracy: 27.13%
-313/313 [==============================] - 1s 3ms/step - loss: 2.1760 - sparse_categorical_accuracy: 0.1939
-Model, accuracy: 19.39%
-INFO flower 2022-04-05 17:30:16,803 | server.py:164 | fit progress: (36, 2.1760032176971436, {'accuracy': 0.193900004029274}, 1420.6376693319999)
-INFO flower 2022-04-05 17:30:16,803 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:30:16,803 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:30:39,387 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 37 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 2.2539 - accuracy: 0.2622
-client_model, accuracy: 26.22%
-313/313 [==============================] - 1s 3ms/step - loss: 2.4013 - accuracy: 0.2441
-client_model, accuracy: 24.41%
-313/313 [==============================] - 1s 3ms/step - loss: 2.1691 - accuracy: 0.2820
-client_model, accuracy: 28.20%
-313/313 [==============================] - 1s 3ms/step - loss: 2.0225 - accuracy: 0.2611
-client_model, accuracy: 26.11%
-313/313 [==============================] - 1s 3ms/step - loss: 2.2100 - accuracy: 0.2471
-client_model, accuracy: 24.71%
-313/313 [==============================] - 1s 3ms/step - loss: 2.1157 - accuracy: 0.2688
-client_model, accuracy: 26.88%
-313/313 [==============================] - 1s 3ms/step - loss: 2.1132 - accuracy: 0.2808
-client_model, accuracy: 28.08%
-313/313 [==============================] - 1s 3ms/step - loss: 1.9819 - accuracy: 0.2899
-client_model, accuracy: 28.99%
-313/313 [==============================] - 1s 3ms/step - loss: 2.0876 - accuracy: 0.2736
-client_model, accuracy: 27.36%
-313/313 [==============================] - 1s 3ms/step - loss: 2.5858 - accuracy: 0.2086
-client_model, accuracy: 20.86%
-313/313 [==============================] - 1s 3ms/step - loss: 2.0682 - sparse_categorical_accuracy: 0.2539
-Model, accuracy: 25.39%
-INFO flower 2022-04-05 17:30:53,393 | server.py:164 | fit progress: (37, 2.0682473182678223, {'accuracy': 0.2538999915122986}, 1457.2275987169999)
-INFO flower 2022-04-05 17:30:53,393 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:30:53,394 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:31:14,864 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 38 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 2.2736 - accuracy: 0.2789
-client_model, accuracy: 27.89%
-313/313 [==============================] - 1s 3ms/step - loss: 2.0725 - accuracy: 0.3104
-client_model, accuracy: 31.04%
-313/313 [==============================] - 1s 3ms/step - loss: 2.2067 - accuracy: 0.2814
-client_model, accuracy: 28.14%
-313/313 [==============================] - 1s 3ms/step - loss: 2.2391 - accuracy: 0.2526
-client_model, accuracy: 25.26%
-313/313 [==============================] - 1s 3ms/step - loss: 2.4924 - accuracy: 0.2482
-client_model, accuracy: 24.82%
-313/313 [==============================] - 1s 3ms/step - loss: 2.4578 - accuracy: 0.2756
-client_model, accuracy: 27.56%
-313/313 [==============================] - 1s 3ms/step - loss: 2.7874 - accuracy: 0.2304
-client_model, accuracy: 23.04%
-313/313 [==============================] - 1s 3ms/step - loss: 2.2880 - accuracy: 0.2930
-client_model, accuracy: 29.30%
-313/313 [==============================] - 1s 3ms/step - loss: 2.8136 - accuracy: 0.2694
-client_model, accuracy: 26.94%
-313/313 [==============================] - 1s 3ms/step - loss: 2.3055 - accuracy: 0.2289
-client_model, accuracy: 22.89%
-313/313 [==============================] - 1s 3ms/step - loss: 1.8376 - sparse_categorical_accuracy: 0.3404
-Model, accuracy: 34.04%
-INFO flower 2022-04-05 17:31:28,652 | server.py:164 | fit progress: (38, 1.837601900100708, {'accuracy': 0.34040001034736633}, 1492.486216211)
-INFO flower 2022-04-05 17:31:28,652 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:31:28,653 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:31:51,139 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 39 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 2.2841 - accuracy: 0.3210
-client_model, accuracy: 32.10%
-313/313 [==============================] - 1s 3ms/step - loss: 2.4786 - accuracy: 0.2862
-client_model, accuracy: 28.62%
-313/313 [==============================] - 1s 3ms/step - loss: 3.0332 - accuracy: 0.1982
-client_model, accuracy: 19.82%
-313/313 [==============================] - 1s 3ms/step - loss: 2.4059 - accuracy: 0.2858
-client_model, accuracy: 28.58%
-313/313 [==============================] - 1s 3ms/step - loss: 2.1657 - accuracy: 0.3164
-client_model, accuracy: 31.64%
-313/313 [==============================] - 1s 3ms/step - loss: 2.2852 - accuracy: 0.2603
-client_model, accuracy: 26.03%
-313/313 [==============================] - 1s 3ms/step - loss: 2.6083 - accuracy: 0.2905
-client_model, accuracy: 29.05%
-313/313 [==============================] - 1s 3ms/step - loss: 2.1214 - accuracy: 0.2955
-client_model, accuracy: 29.55%
-313/313 [==============================] - 1s 3ms/step - loss: 1.9466 - accuracy: 0.3202
-client_model, accuracy: 32.02%
-313/313 [==============================] - 1s 3ms/step - loss: 2.5266 - accuracy: 0.3011
-client_model, accuracy: 30.11%
-313/313 [==============================] - 1s 3ms/step - loss: 1.8068 - sparse_categorical_accuracy: 0.3519
-Model, accuracy: 35.19%
-INFO flower 2022-04-05 17:32:05,630 | server.py:164 | fit progress: (39, 1.8067902326583862, {'accuracy': 0.35190001130104065}, 1529.46400556)
-INFO flower 2022-04-05 17:32:05,631 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:32:05,631 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:32:28,187 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 40 weights...
-313/313 [==============================] - 1s 3ms/step - loss: 2.3188 - accuracy: 0.3129
-client_model, accuracy: 31.29%
-313/313 [==============================] - 1s 3ms/step - loss: 2.8613 - accuracy: 0.2718
-client_model, accuracy: 27.18%
-313/313 [==============================] - 1s 3ms/step - loss: 2.8330 - accuracy: 0.2628
-client_model, accuracy: 26.28%
-313/313 [==============================] - 1s 3ms/step - loss: 2.3569 - accuracy: 0.3433
-client_model, accuracy: 34.33%
-313/313 [==============================] - 1s 3ms/step - loss: 2.2651 - accuracy: 0.3271
-client_model, accuracy: 32.71%
-313/313 [==============================] - 1s 3ms/step - loss: 2.1715 - accuracy: 0.3197
-client_model, accuracy: 31.97%
-313/313 [==============================] - 1s 3ms/step - loss: 2.4911 - accuracy: 0.2721
-client_model, accuracy: 27.21%
-313/313 [==============================] - 1s 3ms/step - loss: 2.8542 - accuracy: 0.2661
-client_model, accuracy: 26.61%
-313/313 [==============================] - 1s 3ms/step - loss: 1.9897 - accuracy: 0.3210
-client_model, accuracy: 32.10%
-313/313 [==============================] - 1s 3ms/step - loss: 2.1095 - accuracy: 0.3110
-client_model, accuracy: 31.10%
-313/313 [==============================] - 1s 3ms/step - loss: 1.8448 - sparse_categorical_accuracy: 0.3646
-Model, accuracy: 36.46%
-INFO flower 2022-04-05 17:32:42,194 | server.py:164 | fit progress: (40, 1.8447803258895874, {'accuracy': 0.3646000027656555}, 1566.0275099609999)
-INFO flower 2022-04-05 17:32:42,194 | server.py:209 | evaluate_round: no clients selected, cancel
-DEBUG flower 2022-04-05 17:32:42,195 | server.py:269 | fit_round: strategy sampled 10 clients (out of 10)
-DEBUG flower 2022-04-05 17:33:04,356 | server.py:281 | fit_round received 10 results and 0 failures
-Saving round 41 weights...
+
+Model, accuracy: 53,65%
+
+client_model, accuracy: 47,22%
+client_model, accuracy: 48,55%
+client_model, accuracy: 50,77%
+client_model, accuracy: 50,28%
+client_model, accuracy: 51,02%
+client_model, accuracy: 50,22%
+client_model, accuracy: 49,64%
+client_model, accuracy: 44,59%
+client_model, accuracy: 47,59%
+client_model, accuracy: 49,67%
+Model, accuracy: 55,15%
+
+client_model, accuracy: 44,17%
+client_model, accuracy: 48,12%
+client_model, accuracy: 41,66%
+client_model, accuracy: 47,07%
+client_model, accuracy: 46,63%
+client_model, accuracy: 45,29%
+client_model, accuracy: 49,12%
+client_model, accuracy: 49,44%
+client_model, accuracy: 46,20%
+client_model, accuracy: 46,35%
+Model, accuracy: 54,19%
+
+client_model, accuracy: 43,89%
+client_model, accuracy: 38,74%
+client_model, accuracy: 41,27%
+client_model, accuracy: 44,35%
+client_model, accuracy: 40,41%
+client_model, accuracy: 42,01%
+client_model, accuracy: 40,32%
+client_model, accuracy: 47,17%
+client_model, accuracy: 43,23%
+client_model, accuracy: 45,69%
+Model, accuracy: 51,11%
+
+client_model, accuracy: 37,57%
+client_model, accuracy: 40,76%
+client_model, accuracy: 36,43%
+client_model, accuracy: 38,35%
+client_model, accuracy: 37,25%
+client_model, accuracy: 36,48%
+client_model, accuracy: 41,74%
+client_model, accuracy: 41,84%
+client_model, accuracy: 35,46%
+client_model, accuracy: 40,29%
+Model, accuracy: 48,44%
+
+client_model, accuracy: 40,06%
+client_model, accuracy: 38,38%
+client_model, accuracy: 41,09%
+client_model, accuracy: 30,37%
+client_model, accuracy: 42,40%
+client_model, accuracy: 39,00%
+client_model, accuracy: 38,13%
+client_model, accuracy: 37,57%
+client_model, accuracy: 43,78%
+client_model, accuracy: 40,79%
+Model, accuracy: 46,53%
+
+client_model, accuracy: 38,65%
+client_model, accuracy: 41,31%
+client_model, accuracy: 31,21%
+client_model, accuracy: 34,28%
+client_model, accuracy: 34,88%
+client_model, accuracy: 41,37%
+client_model, accuracy: 36,80%
+client_model, accuracy: 40,79%
+client_model, accuracy: 36,43%
+client_model, accuracy: 38,36%
+Model, accuracy: 43,60%
+
+client_model, accuracy: 31,36%
+client_model, accuracy: 38,44%
+client_model, accuracy: 36,54%
+client_model, accuracy: 35,97%
+client_model, accuracy: 36,38%
+client_model, accuracy: 42,54%
+client_model, accuracy: 34,20%
+client_model, accuracy: 34,10%
+client_model, accuracy: 32,62%
+client_model, accuracy: 39,38%
+Model, accuracy: 46,20%
+
+client_model, accuracy: 32,19%
+client_model, accuracy: 32,64%
+client_model, accuracy: 36,36%
+client_model, accuracy: 37,56%
+client_model, accuracy: 39,08%
+client_model, accuracy: 38,85%
+client_model, accuracy: 27,85%
+client_model, accuracy: 39,50%
+client_model, accuracy: 39,61%
+client_model, accuracy: 31,16%
+Model, accuracy: 40,95%
+
+client_model, accuracy: 41,00%
+client_model, accuracy: 41,97%
+client_model, accuracy: 40,92%
+client_model, accuracy: 33,89%
+client_model, accuracy: 38,11%
+client_model, accuracy: 33,45%
+client_model, accuracy: 37,01%
+client_model, accuracy: 39,79%
+client_model, accuracy: 40,14%
+client_model, accuracy: 38,56%
+Model, accuracy: 42,44%
+
+client_model, accuracy: 38,91%
+client_model, accuracy: 42,79%
+client_model, accuracy: 33,09%
+client_model, accuracy: 37,63%
+client_model, accuracy: 39,89%
+client_model, accuracy: 36,18%
+client_model, accuracy: 33,34%
+client_model, accuracy: 32,82%
+client_model, accuracy: 40,83%
+client_model, accuracy: 40,19%
+Model, accuracy: 39,73%
+
+client_model, accuracy: 35,94%
+client_model, accuracy: 41,07%
+client_model, accuracy: 40,42%
+client_model, accuracy: 35,43%
+client_model, accuracy: 33,35%
+client_model, accuracy: 37,88%
+client_model, accuracy: 37,68%
+client_model, accuracy: 41,32%
+client_model, accuracy: 31,13%
+client_model, accuracy: 39,66%
+Model, accuracy: 42,87%
+
+client_model, accuracy: 30,79%
+client_model, accuracy: 31,57%
+client_model, accuracy: 37,82%
+client_model, accuracy: 31,21%
+client_model, accuracy: 29,34%
+client_model, accuracy: 23,96%
+client_model, accuracy: 29,52%
+client_model, accuracy: 29,69%
+client_model, accuracy: 31,18%
+client_model, accuracy: 39,55%
+Model, accuracy: 35,11%
+
+client_model, accuracy: 35,52%
+client_model, accuracy: 34,96%
+client_model, accuracy: 34,59%
+client_model, accuracy: 32,94%
+client_model, accuracy: 32,72%
+client_model, accuracy: 26,25%
+client_model, accuracy: 35,29%
+client_model, accuracy: 32,44%
+client_model, accuracy: 32,27%
+client_model, accuracy: 27,60%
+Model, accuracy: 37,67%
+
+client_model, accuracy: 34,67%
+client_model, accuracy: 32,52%
+client_model, accuracy: 41,91%
+client_model, accuracy: 33,21%
+client_model, accuracy: 26,91%
+client_model, accuracy: 36,37%
+client_model, accuracy: 32,54%
+client_model, accuracy: 31,06%
+client_model, accuracy: 37,67%
+client_model, accuracy: 28,68%
+Model, accuracy: 38,91%
+
+client_model, accuracy: 38,96%
+client_model, accuracy: 39,50%
+client_model, accuracy: 37,64%
+client_model, accuracy: 30,99%
+client_model, accuracy: 36,76%
+client_model, accuracy: 30,01%
+client_model, accuracy: 33,89%
+client_model, accuracy: 28,99%
+client_model, accuracy: 32,38%
+client_model, accuracy: 24,98%
+Model, accuracy: 40,13%
+
+client_model, accuracy: 37,14%
+client_model, accuracy: 36,80%
+client_model, accuracy: 31,61%
+client_model, accuracy: 35,92%
+client_model, accuracy: 33,05%
+client_model, accuracy: 30,28%
+client_model, accuracy: 30,97%
+client_model, accuracy: 33,18%
+client_model, accuracy: 35,57%
+client_model, accuracy: 35,19%
+Model, accuracy: 38,88%
+
+client_model, accuracy: 33,36%
+client_model, accuracy: 36,62%
+client_model, accuracy: 33,89%
+client_model, accuracy: 31,12%
+client_model, accuracy: 32,14%
+client_model, accuracy: 33,91%
+client_model, accuracy: 35,42%
+client_model, accuracy: 35,21%
+client_model, accuracy: 28,04%
+client_model, accuracy: 32,24%
+Model, accuracy: 44,32%
+
+client_model, accuracy: 30,05%
+client_model, accuracy: 37,99%
+client_model, accuracy: 30,33%
+client_model, accuracy: 38,88%
+client_model, accuracy: 29,72%
+client_model, accuracy: 30,26%
+client_model, accuracy: 30,38%
+client_model, accuracy: 23,03%
+client_model, accuracy: 31,02%
+client_model, accuracy: 35,98%
+Model, accuracy: 45,84%
+
+client_model, accuracy: 20,05%
+client_model, accuracy: 31,14%
+client_model, accuracy: 33,62%
+client_model, accuracy: 35,37%
+client_model, accuracy: 36,31%
+client_model, accuracy: 34,08%
+client_model, accuracy: 34,80%
+client_model, accuracy: 33,14%
+client_model, accuracy: 38,89%
+client_model, accuracy: 38,26%
+Model, accuracy: 44,82%
+
+client_model, accuracy: 27,81%
+client_model, accuracy: 27,88%
+client_model, accuracy: 33,96%
+client_model, accuracy: 33,93%
+client_model, accuracy: 33,27%
+client_model, accuracy: 35,28%
+client_model, accuracy: 34,19%
+client_model, accuracy: 32,07%
+client_model, accuracy: 24,32%
+client_model, accuracy: 22,57%
+Model, accuracy: 44,56%
+
+client_model, accuracy: 31,57%
+client_model, accuracy: 32,86%
+client_model, accuracy: 30,28%
+client_model, accuracy: 29,72%
+client_model, accuracy: 34,79%
+client_model, accuracy: 26,80%
+client_model, accuracy: 29,52%
+client_model, accuracy: 33,90%
+client_model, accuracy: 29,95%
+client_model, accuracy: 32,72%
+Model, accuracy: 40,76%
+
+client_model, accuracy: 28,13%
+client_model, accuracy: 23,15%
+client_model, accuracy: 24,27%
+client_model, accuracy: 27,61%
+client_model, accuracy: 24,39%
+client_model, accuracy: 33,18%
+client_model, accuracy: 33,82%
+client_model, accuracy: 34,08%
+client_model, accuracy: 34,47%
+client_model, accuracy: 28,47%
+Model, accuracy: 38,59%
+
+client_model, accuracy: 24,93%
+client_model, accuracy: 25,39%
+client_model, accuracy: 26,29%
+client_model, accuracy: 27,41%
+client_model, accuracy: 20,25%
+client_model, accuracy: 31,73%
+client_model, accuracy: 28,59%
+client_model, accuracy: 24,00%
+client_model, accuracy: 25,03%
+client_model, accuracy: 26,57%
+Model, accuracy: 31,97%
+
+client_model, accuracy: 20,68%
+client_model, accuracy: 29,39%
+client_model, accuracy: 20,37%
+client_model, accuracy: 31,58%
+client_model, accuracy: 26,17%
+client_model, accuracy: 32,07%
+client_model, accuracy: 20,78%
+client_model, accuracy: 27,08%
+client_model, accuracy: 25,39%
+client_model, accuracy: 18,87%
+Model, accuracy: 28,78%
+
+client_model, accuracy: 24,06%
+client_model, accuracy: 20,38%
+client_model, accuracy: 28,22%
+client_model, accuracy: 28,96%
+client_model, accuracy: 33,65%
+client_model, accuracy: 27,92%
+client_model, accuracy: 27,11%
+client_model, accuracy: 22,11%
+client_model, accuracy: 27,59%
+client_model, accuracy: 30,65%
+Model, accuracy: 34,22%
+
+client_model, accuracy: 25,77%
+client_model, accuracy: 22,31%
+client_model, accuracy: 24,59%
+client_model, accuracy: 29,40%
+client_model, accuracy: 32,09%
+client_model, accuracy: 32,41%
+client_model, accuracy: 22,18%
+client_model, accuracy: 33,16%
+client_model, accuracy: 27,73%
+client_model, accuracy: 25,15%
+Model, accuracy: 30,78%
+
+client_model, accuracy: 23,13%
+client_model, accuracy: 33,02%
+client_model, accuracy: 25,53%
+client_model, accuracy: 30,14%
+client_model, accuracy: 25,15%
+client_model, accuracy: 29,02%
+client_model, accuracy: 24,97%
+client_model, accuracy: 25,60%
+client_model, accuracy: 28,11%
+client_model, accuracy: 29,97%
+Model, accuracy: 33,99%
+
+client_model, accuracy: 27,48%
+client_model, accuracy: 29,94%
+client_model, accuracy: 25,21%
+client_model, accuracy: 23,41%
+client_model, accuracy: 24,58%
+client_model, accuracy: 24,07%
+client_model, accuracy: 24,52%
+client_model, accuracy: 24,87%
+client_model, accuracy: 30,18%
+client_model, accuracy: 27,73%
+Model, accuracy: 30,03%
+
+client_model, accuracy: 28,04%
+client_model, accuracy: 26,03%
+client_model, accuracy: 25,50%
+client_model, accuracy: 30,17%
+client_model, accuracy: 23,45%
+client_model, accuracy: 24,45%
+client_model, accuracy: 27,11%
+client_model, accuracy: 21,54%
+client_model, accuracy: 21,59%
+client_model, accuracy: 33,36%
+Model, accuracy: 34,63%
+
+client_model, accuracy: 28,61%
+client_model, accuracy: 18,41%
+client_model, accuracy: 28,88%
+client_model, accuracy: 35,30%
+client_model, accuracy: 18,58%
+client_model, accuracy: 23,87%
+client_model, accuracy: 20,88%
+client_model, accuracy: 21,37%
+client_model, accuracy: 22,72%
+client_model, accuracy: 31,56%
+Model, accuracy: 29,59%
+
+client_model, accuracy: 27,09%
+client_model, accuracy: 27,24%
+client_model, accuracy: 30,67%
+client_model, accuracy: 22,72%
+client_model, accuracy: 21,57%
+client_model, accuracy: 30,99%
+client_model, accuracy: 24,63%
+client_model, accuracy: 28,00%
+client_model, accuracy: 28,39%
+client_model, accuracy: 27,33%
+Model, accuracy: 38,02%
+
+client_model, accuracy: 19,56%
+client_model, accuracy: 27,18%
+client_model, accuracy: 32,52%
+client_model, accuracy: 19,93%
+client_model, accuracy: 23,91%
+client_model, accuracy: 27,85%
+client_model, accuracy: 26,11%
+client_model, accuracy: 26,45%
+client_model, accuracy: 28,75%
+client_model, accuracy: 30,45%
+Model, accuracy: 36,05%
+
+client_model, accuracy: 17,34%
+client_model, accuracy: 27,04%
+client_model, accuracy: 32,88%
+client_model, accuracy: 20,58%
+client_model, accuracy: 29,43%
+client_model, accuracy: 28,93%
+client_model, accuracy: 22,33%
+client_model, accuracy: 27,04%
+client_model, accuracy: 31,96%
+client_model, accuracy: 19,70%
+Model, accuracy: 28,02%
+
+client_model, accuracy: 20,57%
+client_model, accuracy: 19,32%
+client_model, accuracy: 26,89%
+client_model, accuracy: 18,37%
+client_model, accuracy: 32,99%
+client_model, accuracy: 25,98%
+client_model, accuracy: 16,77%
+client_model, accuracy: 28,45%
+client_model, accuracy: 28,08%
+client_model, accuracy: 21,33%
+Model, accuracy: 20,53%
+
+client_model, accuracy: 19,49%
+client_model, accuracy: 22,63%
+client_model, accuracy: 16,60%
+client_model, accuracy: 21,42%
+client_model, accuracy: 26,00%
+client_model, accuracy: 21,65%
+client_model, accuracy: 22,36%
+client_model, accuracy: 20,23%
+client_model, accuracy: 17,15%
+client_model, accuracy: 10,02%
+Model, accuracy: 13,92%
+
+client_model, accuracy: 23,73%
+client_model, accuracy: 20,57%
+client_model, accuracy: 23,12%
+client_model, accuracy: 17,32%
+client_model, accuracy: 22,14%
+client_model, accuracy: 24,22%
+client_model, accuracy: 24,29%
+client_model, accuracy: 19,68%
+client_model, accuracy: 20,67%
+client_model, accuracy: 27,13%
+Model, accuracy: 19,39%
+
+client_model, accuracy: 26,22%
+client_model, accuracy: 24,41%
+client_model, accuracy: 28,20%
+client_model, accuracy: 26,11%
+client_model, accuracy: 24,71%
+client_model, accuracy: 26,88%
+client_model, accuracy: 28,08%
+client_model, accuracy: 28,99%
+client_model, accuracy: 27,36%
+client_model, accuracy: 20,86%
+Model, accuracy: 25,39%
+
+client_model, accuracy: 27,89%
+client_model, accuracy: 31,04%
+client_model, accuracy: 28,14%
+client_model, accuracy: 25,26%
+client_model, accuracy: 24,82%
+client_model, accuracy: 27,56%
+client_model, accuracy: 23,04%
+client_model, accuracy: 29,30%
+client_model, accuracy: 26,94%
+client_model, accuracy: 22,89%
+Model, accuracy: 34,04%
+
+client_model, accuracy: 32,10%
+client_model, accuracy: 28,62%
+client_model, accuracy: 19,82%
+client_model, accuracy: 28,58%
+client_model, accuracy: 31,64%
+client_model, accuracy: 26,03%
+client_model, accuracy: 29,05%
+client_model, accuracy: 29,55%
+client_model, accuracy: 32,02%
+client_model, accuracy: 30,11%
+Model, accuracy: 35,19%
+
+client_model, accuracy: 31,29%
+client_model, accuracy: 27,18%
+client_model, accuracy: 26,28%
+client_model, accuracy: 34,33%
+client_model, accuracy: 32,71%
+client_model, accuracy: 31,97%
+client_model, accuracy: 27,21%
+client_model, accuracy: 26,61%
+client_model, accuracy: 32,10%
+client_model, accuracy: 31,10%
+Model, accuracy: 36,46%
