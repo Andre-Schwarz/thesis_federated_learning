@@ -24,7 +24,6 @@ def create_model():
     model = tf.keras.Sequential(
         [
             tf.keras.Input(shape=(32, 32, 3)),
-            # tf.keras.layers.Rescaling(1./255, offset=0.0),
             tf.keras.layers.Conv2D(6, 5, activation="relu"),
             tf.keras.layers.MaxPooling2D(pool_size=(2, 2)),
             tf.keras.layers.Conv2D(16, 5, activation="relu"),
@@ -90,27 +89,6 @@ cifar10 = tf.keras.datasets.cifar10
 (trainImages, trainLabels), (testImages, testLabels) = cifar10.load_data()
 
 class FedAvgAndroidSaveAndEvaluate(fl.server.strategy.FedAvgAndroid):
-    # def aggregate_fit(
-    #     self,
-    #     rnd: int,
-    #     results: List[Tuple[ClientProxy, FitRes]],
-    #     failures: List[BaseException],
-    # ) -> Tuple[Optional[Parameters], Dict[str, Scalar]]:
-    #     parameters = super().aggregate_fit(rnd, results, failures)
-    #     if parameters is not None:
-    #         # Save weights
-    #         print(f"Saving round {rnd} parameters...")
-    #         np.savez(f"round-{rnd}-parameters.npz", *parameters)
-
-    #         weights_results = [
-    #             (self.parameters_to_weights(fit_res.parameters), fit_res.num_examples)
-    #             for client, fit_res in results
-    #         ]
-
-    #         print(f"Saving round {rnd} weights...")
-    #         np.savez(f"round-{rnd}-weights.npz",aggregate(weights_results))
-    #     return parameters
-
     def weights_to_parameters(self, weights: Weights) -> Parameters:
         """Convert NumPy weights to parameters object."""
         tensors = [self.ndarray_to_bytes(ndarray) for ndarray in weights]
