@@ -1,1 +1,1 @@
-# thesis_ffederated_learning
+# Vergleich zwischen lokal und verteilt trainierten neuronalen Netzen - Anhang
